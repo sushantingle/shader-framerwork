@@ -28,24 +28,7 @@ namespace sf {
 		/************************************************************************/
 		const char* readShaderFile(const char* fileName);
 		
-		/************************************************************************/
-		/*
-			This function invokes the function to read shader, compiles it and then attach to the program.
-			IF shader compilation fails, this function invokes function to print error info.
-			@param: 
-				vertex and fragment shader names.
-		*/
-		/************************************************************************/
-		bool setShader(const char* vertexShader, const char* fragmentShader);
-
-		/************************************************************************/
-		/* 
-			This function removes active shader.
-			@param:
-				obj : shader id.
-		*/
-		/************************************************************************/
-		bool removeShader(GLuint obj);
+		
 
 		/************************************************************************/
 		/* 
@@ -93,6 +76,26 @@ namespace sf {
 		GLuint	m_fragmentShaderId;
 
 	protected:
+
+		/************************************************************************/
+		/*
+		This function invokes the function to read shader, compiles it and then attach to the program.
+		IF shader compilation fails, this function invokes function to print error info.
+		@param:
+		vertex and fragment shader names.
+		*/
+		/************************************************************************/
+		bool setShader(const char* vertexShader, const char* fragmentShader);
+
+		/************************************************************************/
+		/*
+		This function removes active shader.
+		@param:
+		obj : shader id.
+		*/
+		/************************************************************************/
+		bool removeShader(GLuint obj);
+
 
 		// Camera Parameters
 		sf::Vector3<float> m_cameraPosition;

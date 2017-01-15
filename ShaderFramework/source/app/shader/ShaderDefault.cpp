@@ -3,6 +3,8 @@
 
 void ShaderDefault::init() {
 	glEnable(GL_DEPTH_TEST);
+
+	setShader("toon.vert", "toon.frag");
 }
 
 void ShaderDefault::uninit() {
@@ -21,10 +23,14 @@ void ShaderDefault::render() {
 		m_cameraPosition.x + m_cameraRotation.x, 1.0f, m_cameraPosition.z + m_cameraRotation.z,
 		0.0f, 1.0f, 0.0f);
 
-	glBegin(GL_TRIANGLES);
-	glVertex3f(0.5f, 0.5f, -2.0f);
-	glVertex3f(0.5f, 0.0f, -2.0f);
-	glVertex3f(0.0f, 0.5f, -2.0f);
+	glRotatef(m_cameraAngle, 0.0f, 1.0f, 0.0f);
+
+	glColor4f(0.9f, 0.9f, 0.9f, 1.0f);
+	glBegin(GL_QUADS);
+	glVertex3f(-100.0f, 0.0f, -100.0f);
+	glVertex3f(-100.0f, 0.0f, 100.0f);
+	glVertex3f(100.0f, 0.0f, 100.0f);
+	glVertex3f(100.0f, 0.0f, -100.0f);
 	glEnd();
 
 	// Draw 36 SnowMen

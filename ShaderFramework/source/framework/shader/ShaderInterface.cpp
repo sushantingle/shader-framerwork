@@ -1,8 +1,10 @@
 #include "ShaderInterface.hpp"
 #include <fstream>
 #include "../framework/datatype/fsVector.hpp"
+#include <string>
 namespace sf {
 
+	#define SHADER_ABSOLUTE_PATH "../source/app/resource/shader/"
 	ShaderInterface::ShaderInterface() {
 
 	}
@@ -27,6 +29,7 @@ namespace sf {
 		m_deltaAngle	= 0.0f;
 		m_xOrigin		= -1;
 
+		glewInit();
 		// call init of derived class
 		init(); // derived->init();
 	}
@@ -61,15 +64,22 @@ namespace sf {
 	//////////////////////////////////////////////////////////////////////////
 
 	const char* ShaderInterface::readShaderFile(const char* fileName) {
-		FILE* fp = fopen(fileName, "r");
+		
+		int strLength = strlen(SHADER_ABSOLUTE_PATH) + strlen(fileName);
+		char* filePath = (char*) malloc(strLength + 1);
+		std::sprintf(filePath, "%s%s", SHADER_ABSOLUTE_PATH, fileName);
+		filePath[strLength] = '\0';
+		FILE* fp = fopen(filePath, "r");
 		char* buf;
 		long size;
 
 		if (fp == NULL)
 		{
-			printf("File Not Found : %s", fileName);
+			printf("File Not Found : %s", filePath);
 			return NULL;
 		}
+		free(filePath);
+
 		fseek(fp, 0L, SEEK_END);//go to end
 		size = ftell(fp);       //get size
 		fseek(fp, 0L, SEEK_SET);//go to beginning
@@ -109,6 +119,8 @@ namespace sf {
 		if (printProgramInfoLog(m_programId))
 			return false; // SHADER ATTACHMENT TO PROGRAM FAILED
 
+		glLinkProgram(m_programId);
+		glUseProgram(m_programId);
 		return true;
 	}
 
@@ -121,7 +133,7 @@ namespace sf {
 		int infologLength = 0;
 		int charsWritten = 0;
 		char *infoLog;
-
+		
 		glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
 
 		if (infologLength > 0)
@@ -129,10 +141,10 @@ namespace sf {
 			infoLog = (char *)malloc(infologLength);
 			glGetShaderInfoLog(obj, infologLength, &charsWritten, infoLog);
 			printf("%s\n", infoLog);
-			free(infoLog);
-			return true; // COMPILATION FAILED
+			free(infoLog);	
 		}
-		return false; // NO ERROR
+		// If success the infoLogLength is 1 which means empty.. no error
+		return (infologLength > 1);
 	}
 
 	bool ShaderInterface::printProgramInfoLog(GLuint obj) {
@@ -148,9 +160,9 @@ namespace sf {
 			glGetProgramInfoLog(obj, infologLength, &charsWritten, infoLog);
 			printf("%s\n", infoLog);
 			free(infoLog);
-			return true; // PROGRAM ATTACHMENT FAILED
 		}
-		return false; // NO ERROR
+		// If success the infoLogLength is 1 which means empty.. no error
+		return (infologLength > 1);
 	}
 
 	//////////////////////////////////////////////////////////////////////////
