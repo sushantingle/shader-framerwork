@@ -13,5 +13,42 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Header Files\GL">
+      <UniqueIdentifier>{ea4c9270-c6c3-4b4c-b8e5-cd2829d42875}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\GLEW">
+      <UniqueIdentifier>{a88ef93e-ddbb-4f49-87a4-e2c2d0f4eda6}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\source\MainApp.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\source\external\GL\freeglut.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\GL\freeglut_ext.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\GL\freeglut_std.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\GL\glut.h">
+      <Filter>Header Files\GL</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\GLEW\eglew.h">
+      <Filter>Header Files\GLEW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\GLEW\glew.h">
+      <Filter>Header Files\GLEW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\GLEW\glxew.h">
+      <Filter>Header Files\GLEW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\GLEW\wglew.h">
+      <Filter>Header Files\GLEW</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
