@@ -1,14 +1,44 @@
 #ifndef __SHADERAPPMANAGER_HPP__
 #define __SHADERAPPMANAGER_HPP__
 
+#include "../framework/shader/ShaderInterface.hpp"
 
 class ShaderAppManager {
 private:
 
+	// Enumeration
 	enum class ShaderType {
 	SHADER_DEFAULT,
 	};
 
+	// Member Function
+
+	/************************************************************************/
+	/* 
+		Initializes shader base object with object of _shaderType
+	*/
+	/************************************************************************/
+	void createShader(ShaderType _shaderType);
+
+	/************************************************************************/
+	/* 
+		Deletes the shader base object
+	*/
+	/************************************************************************/
+	void deleteShader();
+
+	/************************************************************************/
+	/* 
+		Allocates passed shader type object.
+	*/
+	/************************************************************************/
+	void createObjectOfShaderType(ShaderType _shaderType);
+
+	// Memeber Variables
+	sf::ShaderInterface* m_shaderBase;
+	ShaderType			 m_shaderType;
+	int					 m_windowWidth;
+	int					 m_windowHeight;
 public:
 	ShaderAppManager();
 	~ShaderAppManager();
@@ -18,7 +48,7 @@ public:
 		Initializes manager in main function
 	*/
 	/************************************************************************/
-	void init();
+	void init(int _width, int _height);
 
 	/************************************************************************/
 	/* 
