@@ -19,10 +19,43 @@
     <Filter Include="Header Files\GLEW">
       <UniqueIdentifier>{a88ef93e-ddbb-4f49-87a4-e2c2d0f4eda6}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\shader">
+      <UniqueIdentifier>{2f4c215d-e678-47b5-a468-c38bfda874aa}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\textures">
+      <UniqueIdentifier>{abca7802-6bc2-400a-93d4-9a8ae323fc35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App">
+      <UniqueIdentifier>{f9966ead-e0f1-49c3-83ab-66476956067d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework">
+      <UniqueIdentifier>{c5dd1096-93e1-47cd-97c1-73047ba52e7e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\manager">
+      <UniqueIdentifier>{851f9253-d78a-4007-aef9-c91ce1ac83c6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\shader">
+      <UniqueIdentifier>{b1969b75-c842-4b5c-8a07-ab9f9adca734}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\shader">
+      <UniqueIdentifier>{ac30db13-e989-40cf-a7df-593cbebfa99e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Framework\datatype">
+      <UniqueIdentifier>{75583cb7-0278-4de9-83b0-bdf88e6f7c18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\framework\shader\ShaderInterface.cpp">
+      <Filter>Source Files\Framework\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\manager\ShaderAppManager.cpp">
+      <Filter>Source Files\App\manager</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\ShaderDefault.cpp">
+      <Filter>Source Files\App\shader</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -49,6 +82,18 @@
     </ClInclude>
     <ClInclude Include="..\source\external\GLEW\wglew.h">
       <Filter>Header Files\GLEW</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\framework\shader\ShaderInterface.hpp">
+      <Filter>Source Files\Framework\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\app\manager\ShaderAppManager.hpp">
+      <Filter>Source Files\App\manager</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\app\shader\ShaderDefault.hpp">
+      <Filter>Source Files\App\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\framework\datatype\fsVector.hpp">
+      <Filter>Source Files\Framework\datatype</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
