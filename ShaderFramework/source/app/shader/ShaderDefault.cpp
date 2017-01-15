@@ -2,7 +2,7 @@
 
 
 void ShaderDefault::init() {
-	//glEnable(GL_DEPTH_TEST);
+	glEnable(GL_DEPTH_TEST);
 }
 
 void ShaderDefault::uninit() {

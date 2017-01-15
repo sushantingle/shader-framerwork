@@ -22,8 +22,10 @@ namespace sf {
 
 		m_cameraPosition = Vector3<float>(0.0f, 0.0f, 5.0f);
 		m_cameraRotation = Vector3<float>(0.0f, 0.0f, -1.0f);
-		m_cameraSpeed = 0.5f;
-		m_cameraAngle = 0.0f;
+		m_cameraSpeed	= 0.5f;
+		m_cameraAngle	= 0.0f;
+		m_deltaAngle	= 0.0f;
+		m_xOrigin		= -1;
 
 		// call init of derived class
 		init(); // derived->init();
@@ -210,11 +212,31 @@ namespace sf {
 		}
 	}
 
-	void ShaderInterface::processMouseInputs(int button, int State, int x, int y) {
-	
+	void ShaderInterface::processMouseInputs(int button, int state, int x, int y) {
+		// only start motion if the left button is pressed
+		if (button == GLUT_LEFT_BUTTON) {
+
+			// when the button is released
+			if (state == GLUT_UP) {
+				m_cameraAngle += m_deltaAngle;
+				m_xOrigin = -1;
+			}
+			else  {// state = GLUT_DOWN
+				m_xOrigin = x;
+			}
+		}
 	}
 
 	void ShaderInterface::processMouseMovement(int x, int y) {
-	
+		// this will only be true when the left button is down
+		if (m_xOrigin >= 0) {
+
+			// update deltaAngle
+			m_deltaAngle = (x - m_xOrigin) * 0.001f;
+
+			// update camera's direction
+			m_cameraRotation.x = sin(m_cameraAngle + m_deltaAngle);
+			m_cameraRotation.z = -cos(m_cameraAngle + m_deltaAngle);
+		}
 	}
 }

@@ -99,6 +99,8 @@ namespace sf {
 		sf::Vector3<float> m_cameraRotation;
 		float m_cameraAngle;
 		float m_cameraSpeed;
+		float m_deltaAngle;
+		float m_xOrigin;
 
 	public:
 
