@@ -1,4 +1,3 @@
-#include "GL/freeglut.h"
 #include "app/manager/ShaderAppManager.hpp"
 
 // Window Parameters
@@ -29,6 +28,25 @@ void resizeWindow(int w, int h) {
 	glMatrixMode(GL_MODELVIEW);
 }
 
+void displayFunc() {
+	m_appManager->update();
+}
+
+void onNormalKeyboardKeyPressed(unsigned char key, int x, int y) {
+	m_appManager->onNormalKeyboardKeyPressed(key, x, y);
+}
+
+void onSpecialKeyboardKeyPressed(int key, int x, int y) {
+	m_appManager->onSpecialKeyboardKeyPressed(key, x, y);
+}
+
+void onMouseButtonDown(int button, int state, int x, int y) {
+	m_appManager->onMouseButtonDown(button, state, x, y);
+}
+
+void onMouseMoved(int x, int y) {
+	m_appManager->onMouseMoved(x, y);
+}
 /************************************************************************/
 /* App Main Function : Entry Point                                                                     */
 /************************************************************************/
@@ -43,24 +61,24 @@ int main(int argc, char** argv) {
 
 	// Initialize App Manager
 	m_appManager = new ShaderAppManager();
-	m_appManager->init();
+	m_appManager->init(width, height);
 
 	// register window resize function
 	glutReshapeFunc(resizeWindow);
 
 	// register rendering function
-	glutDisplayFunc(m_appManager->update);
+	glutDisplayFunc(displayFunc);
 
 	// register rendering function to call in app's idle condition
-	glutIdleFunc(m_appManager->update);
+	glutIdleFunc(displayFunc);
 
 	// register function for keyboard inputs
-	glutKeyboardFunc(m_appManager->onNormalKeyboardKeyPressed);
-	glutSpecialFunc(m_appManager->onSpecialKeyboardKeyPressed);
+	glutKeyboardFunc(onNormalKeyboardKeyPressed);
+	glutSpecialFunc(onSpecialKeyboardKeyPressed);
 
 	// register function for mouse inputs
-	glutMouseFunc(m_appManager->onMouseButtonDown);
-	glutMotionFunc(m_appManager->onMouseMoved);
+	glutMouseFunc(onMouseButtonDown);
+	glutMotionFunc(onMouseMoved);
 
 	glutMainLoop();
 	return 1;
