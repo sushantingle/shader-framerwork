@@ -55,6 +55,10 @@ namespace sf {
 		return true;
 	}
 
+	bool ShaderInterface::removeShader(GLuint obj) {
+		
+		return true;
+	}
 	void ShaderInterface::printShaderInfoLog(GLuint obj) {
 
 	}

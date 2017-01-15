@@ -21,6 +21,8 @@ namespace sf {
 		/************************************************************************/
 		/* 
 			This function reads the shader file and returns char buffer.
+			@param: 
+				fileName : shader file name or absolute path
 		*/
 		/************************************************************************/
 		const char* readShaderFile(const char* fileName);
@@ -29,13 +31,26 @@ namespace sf {
 		/*
 			This function invokes the function to read shader, compiles it and then attach to the program.
 			IF shader compilation fails, this function invokes function to print error info.
+			@param: 
+				vertex and fragment shader names.
 		*/
 		/************************************************************************/
 		bool setShader(const char* vertexShader, const char* fragmentShader);
 
 		/************************************************************************/
 		/* 
+			This function removes active shader.
+			@param:
+				obj : shader id.
+		*/
+		/************************************************************************/
+		bool removeShader(GLuint obj);
+
+		/************************************************************************/
+		/* 
 			This function prints error log if shader compilation fails.			
+			@param:
+				obj : shader id
 		*/
 		/************************************************************************/
 		void printShaderInfoLog(GLuint obj);
@@ -43,6 +58,8 @@ namespace sf {
 		/************************************************************************/
 		/* 
 			This function prints error log if program attachment fails.
+			@param:
+				obj : program id
 		*/
 		/************************************************************************/
 		void printProgramInfoLog(GLuint obj);
@@ -74,8 +91,8 @@ namespace sf {
 				x, y	: Mouse pointer position
 		*/
 		/************************************************************************/
-		void processNormalKeyInputs(unsigned char key, int x, int y);
-		void processSpecialKeyInputs(int key, int x, int y);
+		virtual void processNormalKeyInputs(unsigned char key, int x, int y);
+		virtual void processSpecialKeyInputs(int key, int x, int y);
 
 		/************************************************************************/
 		/* 
@@ -86,7 +103,7 @@ namespace sf {
 				state	: Button state => GLUT_DOWN, GLUT_UP
 		*/
 		/************************************************************************/
-		void processMouseInputs(int button, int State, int x, int y);
+		virtual void processMouseInputs(int button, int State, int x, int y);
 
 		/************************************************************************/
 		/*
@@ -95,7 +112,7 @@ namespace sf {
 				x,y : mouse pixel position in scene
 		*/
 		/************************************************************************/
-		void processMouseMovement(int x, int y);
+		virtual void processMouseMovement(int x, int y);
 		
 	};
 }
