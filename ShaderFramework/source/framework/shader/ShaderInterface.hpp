@@ -1,8 +1,9 @@
 #ifndef __SHADERINTERFACE_HPP__
 #define __SHADERINTERFACE_HPP__
 
-#include "GL/glut.h"
 #include "GLEW/glew.h"
+#include "GL/glut.h"
+#include "../datatype/fsVector.hpp"
 
 namespace sf {
 	class ShaderInterface {
@@ -48,21 +49,56 @@ namespace sf {
 
 		/************************************************************************/
 		/* 
-			This function prints error log if shader compilation fails.			
+			This function prints error log if shader compilation fails and returns true.			
 			@param:
 				obj : shader id
 		*/
 		/************************************************************************/
-		void printShaderInfoLog(GLuint obj);
+		bool printShaderInfoLog(GLuint obj);
 
 		/************************************************************************/
 		/* 
-			This function prints error log if program attachment fails.
+			This function prints error log if program attachment fails and returns true.
 			@param:
 				obj : program id
 		*/
 		/************************************************************************/
-		void printProgramInfoLog(GLuint obj);
+		bool printProgramInfoLog(GLuint obj);
+
+		/************************************************************************/
+		/* 
+			To render text or 2d objects using pixel co-ordinate, this function
+			sets projection to orthographic. 
+			Set orthographic projection and then render required graphics and then
+			restore back to perspective projection.
+		*/
+		/************************************************************************/
+		void setOrthographicProjection();
+
+		/************************************************************************/
+		/* 
+			This function restores projection to perspective if user has switched to 
+			orthographic before.
+		*/
+		/************************************************************************/
+		void restorePerspectiveProjection();
+
+		// Window Parameters
+		int		m_windowWidth;
+		int		m_windowHeight;
+
+		// Shader Parameters
+		GLuint	m_programId;
+		GLuint	m_vertexShaderId;
+		GLuint	m_fragmentShaderId;
+
+	protected:
+
+		// Camera Parameters
+		sf::Vector3<float> m_cameraPosition;
+		sf::Vector3<float> m_cameraRotation;
+		float m_cameraAngle;
+		float m_cameraSpeed;
 
 	public:
 
@@ -75,7 +111,7 @@ namespace sf {
 			Functions basically does the common implementation and calls derived class's appropriate function.
 		*/
 		/************************************************************************/
-		void baseInit();
+		void baseInit(int _width, int _height);
 		void baseUninit();
 		void baseUpdate();
 		void baseRender();
