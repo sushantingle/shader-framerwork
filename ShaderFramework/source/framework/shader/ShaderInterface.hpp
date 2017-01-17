@@ -89,12 +89,10 @@ namespace sf {
 
 		/************************************************************************/
 		/*
-		This function removes active shader.
-		@param:
-		obj : shader id.
+			This function removes active shader.
 		*/
 		/************************************************************************/
-		bool removeShader(GLuint obj);
+		bool removeShader();
 
 
 		// Camera Parameters

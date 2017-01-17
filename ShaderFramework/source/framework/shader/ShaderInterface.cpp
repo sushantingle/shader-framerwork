@@ -16,7 +16,9 @@ namespace sf {
 	//////////////////////////////////////////////////////////////////////////
 	// Basic Initialisation
 	//////////////////////////////////////////////////////////////////////////
-
+	/*!
+	\callgraph
+	*/
 	void ShaderInterface::baseInit(int _width, int _height) {
 		// Do common implementation here
 		m_windowWidth	= _width;
@@ -33,14 +35,18 @@ namespace sf {
 		// call init of derived class
 		init(); // derived->init();
 	}
-
+	/*!
+	\callgraph
+	*/
 	void ShaderInterface::baseUninit() {
 		// Do common implementation here
 
 		// call uninit of derived class
 		uninit();  // derived->uninit();
 	}
-
+	/*!
+	\callgraph
+	*/
 	void ShaderInterface::baseUpdate() {
 		// Do common implementation here
 
@@ -124,8 +130,13 @@ namespace sf {
 		return true;
 	}
 
-	bool ShaderInterface::removeShader(GLuint obj) {
-		
+	bool ShaderInterface::removeShader() {
+		glDetachShader(m_programId, m_vertexShaderId);		// detach vertex shader
+		glDetachShader(m_programId, m_fragmentShaderId);	// detach fragment shader
+
+		glDeleteShader(m_vertexShaderId);
+		glDeleteShader(m_fragmentShaderId);
+
 		return true;
 	}
 
