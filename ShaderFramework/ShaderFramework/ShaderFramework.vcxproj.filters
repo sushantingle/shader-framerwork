@@ -43,6 +43,9 @@
     <Filter Include="Source Files\Framework\datatype">
       <UniqueIdentifier>{75583cb7-0278-4de9-83b0-bdf88e6f7c18}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\shader\diffuse">
+      <UniqueIdentifier>{9ea85e98-5133-455b-a90f-e479903c3d9f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
@@ -55,6 +58,9 @@
       <Filter>Source Files\App\manager</Filter>
     </ClCompile>
     <ClCompile Include="..\source\app\shader\ShaderDefault.cpp">
+      <Filter>Source Files\App\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\ShaderDiffuse.cpp">
       <Filter>Source Files\App\shader</Filter>
     </ClCompile>
   </ItemGroup>
@@ -95,5 +101,23 @@
     <ClInclude Include="..\source\framework\datatype\fsVector.hpp">
       <Filter>Source Files\Framework\datatype</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\app\shader\ShaderDiffuse.hpp">
+      <Filter>Source Files\App\shader</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\source\app\resource\shader\toon.frag">
+      <Filter>Resource Files\shader</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\toon.vert">
+      <Filter>Resource Files\shader</Filter>
+    </None>
+    <None Include="ClassDiagram.cd" />
+    <None Include="..\source\app\resource\shader\diffuse\diffuse.frag">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\diffuse.vert">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
   </ItemGroup>
 </Project>
