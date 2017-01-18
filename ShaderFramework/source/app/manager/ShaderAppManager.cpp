@@ -41,10 +41,10 @@ void ShaderAppManager::update() {
 //////////////////////////////////////////////////////////////////////////
 
 void ShaderAppManager::createShader(ShaderType _shaderType) {
-	createObjectOfShaderType(_shaderType);
+	createObjectOfShaderType(_shaderType);						// create shader object
 	assert(m_shaderBase);
 	
-	m_shaderBase->baseInit(m_windowWidth, m_windowHeight);
+	m_shaderBase->baseInit(m_windowWidth, m_windowHeight);		// initialize shader base class with window width and height
 }
 
 void ShaderAppManager::createObjectOfShaderType(ShaderType _shaderType) {
@@ -60,27 +60,27 @@ void ShaderAppManager::createObjectOfShaderType(ShaderType _shaderType) {
 }
 
 void ShaderAppManager::deleteShader() {
-	m_shaderBase->baseUninit();
-
-	delete m_shaderBase;
+	m_shaderBase->baseUninit();									// Uninit base shader.
+	
+	delete m_shaderBase;										// deletes shader base object
 }
 
 void ShaderAppManager::activateNextShader(bool _next) {
 	ShaderType lastShader = m_shaderType;
 
-	int indexDx = _next ? 1 : -1;
+	int indexDx = _next ? 1 : -1;								// determine which shader to select (next / previous)
 
 	m_shaderType = m_shaderType + indexDx;
 
-	if (m_shaderType < ShaderType::SHADER_DEFAULT)
+	if (m_shaderType < ShaderType::SHADER_DEFAULT)				// check if less than first shader then set shader type to first shader
 		m_shaderType = ShaderType::SHADER_DEFAULT;
 
-	if (m_shaderType >= ShaderType::SHADER_COUNT)
+	if (m_shaderType >= ShaderType::SHADER_COUNT)				// check if greater than max shader count then set shader type to last shader.
 		m_shaderType = (ShaderType::SHADER_COUNT - 1);
 
-	if (lastShader != m_shaderType) {
-		deleteShader();
-		createShader(m_shaderType);
+	if (lastShader != m_shaderType) {							// if last shader and newly selected shader are different 
+		deleteShader();											// then delete previous shader
+		createShader(m_shaderType);								// and create new shader of selected type.
 	}
 }
 //////////////////////////////////////////////////////////////////////////
@@ -88,32 +88,32 @@ void ShaderAppManager::activateNextShader(bool _next) {
 //////////////////////////////////////////////////////////////////////////
 
 void ShaderAppManager::onNormalKeyboardKeyPressed(unsigned char key, int x, int y) {
-	m_shaderBase->processNormalKeyInputs(key, x, y);
+	m_shaderBase->processNormalKeyInputs(key, x, y);			// delegate call to shader base class
 }
 
 void ShaderAppManager::onSpecialKeyboardKeyPressed(int key, int x, int y) {
-	m_shaderBase->processSpecialKeyInputs(key, x, y);
+	m_shaderBase->processSpecialKeyInputs(key, x, y);			// delegate call to shader base class
 }
 
+// changes shader on mouse clicks
 void ShaderAppManager::onMouseButtonDown(int button, int state, int x, int y) {
 
-	if (state == GLUT_UP)
+	if (state == GLUT_UP)										// if mouse button is up								
 	{
 		switch (button)
 		{
 		case GLUT_LEFT_BUTTON:
 			// activate next shader
-			activateNextShader(true);
+			activateNextShader(true);							// and mouse left button is released then activate next shader if any
 			break;
 		case GLUT_RIGHT_BUTTON:
 			// activate previous shader
-			activateNextShader(false);
+			activateNextShader(false);							// and mouse right button is released then activate previous shader if any
 			break;
 		}
 	}
-	m_shaderBase->processMouseInputs(button, state, x, y);
+	m_shaderBase->processMouseInputs(button, state, x, y);      // delegate call to shader base class
 }
 
 void ShaderAppManager::onMouseMoved(int x, int y) {
-	m_shaderBase->processMouseMovement(x, y);
-}
+	m_shaderBase->processMouseMovement(x, y);					// delegate call to shader base class to handle camera movement

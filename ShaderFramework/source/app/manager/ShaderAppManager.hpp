@@ -1,3 +1,7 @@
+/*!
+ 
+*/
+
 #ifndef __SHADERAPPMANAGER_HPP__
 #define __SHADERAPPMANAGER_HPP__
 
@@ -6,104 +10,129 @@
 
 /*!
 	\class ShaderAppManager
-	\brief This is a ShaderAppManager.
-
-	It deals with managing shader...
-
+	\brief This class passes appropriate calls to shader interface to update and render properly.
+	
+	Basic user interaction is implemented in this class.
 */
 class ShaderAppManager {
 
 public:
 
+	ShaderAppManager();
+	~ShaderAppManager();
+
+	/*!
+		\brief Initializes manager
+		\param _width is window width
+		\param _height is window height
+	*/
+	void init(int _width, int _height);
+
+	/************************************************************************/
+	/*
+		\brief Updates app manager in render thread
+	*/
+	/************************************************************************/
+	void update();
+
+	/*!
+		\brief Process normal Keyboard inputs
+
+		Keypad buttons are considered as normal buttons. e.g. 'W','A','S','D'
+
+		\param key is keycode
+		\param x,y are mouse co-ordinates
+	*/
+	void onNormalKeyboardKeyPressed(unsigned char key, int x, int y);
+
+	/*! 
+		\brief processes special keyboard inputs
+
+		special keyboard inputs for ex. shift, ctrl, arrow keys
+
+		\param key is keycode
+		\param x,y are mouse co-ordinates
+	*/
+	void onSpecialKeyboardKeyPressed(int key, int x, int y);
+
+	/*!
+		\brief processes mouse inputs
+
+		\param button is mouse butto key code 
+		ex: GLUT_LEFT_BUTTON, GLUT_RIGHT_BUTTON
+		\param state is mouse button state e.g. GLUT_UP, GLUT_DOWN
+		\param x,y are mouse co-ordinates
+	*/
+	void onMouseButtonDown(int button, int state, int x, int y);
+
+	/*! 
+		\brief handles mouse movement event, We have implemented camera movement 
+		feature in this function
+
+		\param x,y are mouse co-ordinates.
+	*/
+	void onMouseMoved(int x, int y);
 
 private:
 
 	// Enumeration
 	/*!
-		\enum ShaderType
-		This is an enum
+		\enum This enum defines different shader types in app
 	*/
 		enum class ShaderType {
-			SHADER_DEFAULT,		//!< This is the default.
-			SHADER_DIFFUSE,
-			SHADER_COUNT,
+			SHADER_DEFAULT,		//!< This is the default shader.
+			SHADER_DIFFUSE,		//!< This defines diffuse shader
+			SHADER_COUNT,		//!< This defines number shaders app has.
 		};
 
+		/*!
+			\brief implemented + operator to do addition operation on enum.
+			\param _a is like this pointer of enum
+		*/
 		friend ShaderType& operator+(ShaderType _a, int value);
+
+		/*!
+			\brief implemented - operator to do substraction operation on enum
+			\param _a is like this pointer of enum
+		*/
 		friend ShaderType& operator-(ShaderType _a, int value);
 
-	// Member Function
 
-	/************************************************************************/
-	/* 
-		Initializes shader base object with object of _shaderType
+	// Member Function
+	/*!
+		\brief Initializes shader base object with object of _shaderType and initializes shader
+		\param _shaderType is Shader type of object
 	*/
-	/************************************************************************/
-	
 	void createShader(ShaderType _shaderType);
 
-	/************************************************************************/
-	/* 
-		Deletes the shader base object
+	/*!
+		\brief Deletes the shader base object and invokes uninit of shader base class
 	*/
-	/************************************************************************/
 	void deleteShader();
 
-	/************************************************************************/
-	/* 
-		Allocates passed shader type object.
+	/*! 
+		\brief Allocates shader interface object of shader type.
+		\param _shaderType is shader type.
 	*/
-	/************************************************************************/
-	
 	void createObjectOfShaderType(ShaderType _shaderType);
 
-	/************************************************************************/
-	/* 
-		activate next/previous shader
+	/*! 
+		\brief this function invokes in mouse button up callback. 
+
+		This function basically deletes current shader and activates next or previous shader based on the parameter value.
+
+		\param _nextShader is boolean decides which shader to select ( next or previous). 
+				If TRUE then selects next one if current selected is not last.
+				if FALSE then selects previous one if current selected is not first.
 	*/
-	/************************************************************************/
 	void activateNextShader(bool _nextShader);
 
 	// Memeber Variables
-	sf::ShaderInterface* m_shaderBase;
-	ShaderType			 m_shaderType;
-	int					 m_windowWidth;
-	int					 m_windowHeight;
-public:
-	
-	ShaderAppManager();
-	~ShaderAppManager();
+	sf::ShaderInterface* m_shaderBase;  //! \var This is base class object of shader types. This variable allocates on the basis of current shader type
+	ShaderType			 m_shaderType;  //! \var This variable maintains active shader type.
+	int					 m_windowWidth; //! \var This denotes window width
+	int					 m_windowHeight;//! \var This denotes window height
 
-
-
-	/************************************************************************/
-	/* 
-		Initializes manager in main function
-	*/
-	/************************************************************************/
-	
-	void init(int _width, int _height);
-
-	/************************************************************************/
-	/* 
-		Updates app manager in render thread
-	*/
-	/************************************************************************/
-	
-	void update();
-
-	/************************************************************************/
-	/* 
-		Process Keyboard inputs and mouse inputs
-	*/
-	/************************************************************************/
-	
-	void onNormalKeyboardKeyPressed(unsigned char key, int x, int y);
-	
-	void onSpecialKeyboardKeyPressed(int key, int x, int y);
-
-	void onMouseButtonDown(int button, int state, int x, int y);
-	void onMouseMoved(int x, int y);
 
 };
 
