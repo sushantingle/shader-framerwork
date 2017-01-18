@@ -4,11 +4,12 @@
 void ShaderDefault::init() {
 	glEnable(GL_DEPTH_TEST);
 
+	// Set shader parameters
 	setShader("toon.vert", "toon.frag");
 }
 
 void ShaderDefault::uninit() {
-
+	glDisable(GL_DEPTH_TEST);
 }
 
 void ShaderDefault::update() {

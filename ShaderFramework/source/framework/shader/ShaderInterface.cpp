@@ -35,18 +35,16 @@ namespace sf {
 		// call init of derived class
 		init(); // derived->init();
 	}
-	/*!
-	\callgraph
-	*/
+
 	void ShaderInterface::baseUninit() {
 		// Do common implementation here
+		
+		removeShader();// remove current active shader
 
 		// call uninit of derived class
 		uninit();  // derived->uninit();
 	}
-	/*!
-	\callgraph
-	*/
+
 	void ShaderInterface::baseUpdate() {
 		// Do common implementation here
 

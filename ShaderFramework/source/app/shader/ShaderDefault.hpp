@@ -12,6 +12,8 @@ private :
 	void render() override;
 	
 	void renderSnowMan();
+
+
 public:
 	ShaderDefault() {}
 	~ShaderDefault() {}

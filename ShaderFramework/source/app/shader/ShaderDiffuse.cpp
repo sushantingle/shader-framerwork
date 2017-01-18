@@ -9,9 +9,6 @@ void ShaderDiffuse::init() {
 
 void ShaderDiffuse::uninit() {
 	glDisable(GL_DEPTH_TEST);
-
-	// remove current active shader
-	removeShader();
 }
 
 void ShaderDiffuse::update() {
