@@ -127,6 +127,11 @@ private:
 	*/
 	void activateNextShader(bool _nextShader);
 
+	/*!
+		\brief Reload current shader
+	*/
+	void reloadShader();
+
 	// Memeber Variables
 	sf::ShaderInterface* m_shaderBase;  //! \var This is base class object of shader types. This variable allocates on the basis of current shader type
 	ShaderType			 m_shaderType;  //! \var This variable maintains active shader type.

@@ -83,11 +83,30 @@ void ShaderAppManager::activateNextShader(bool _next) {
 		createShader(m_shaderType);								// and create new shader of selected type.
 	}
 }
+
+void ShaderAppManager::reloadShader() {
+	deleteShader();
+	createShader(m_shaderType);
+}
 //////////////////////////////////////////////////////////////////////////
 // Process Inputs
 //////////////////////////////////////////////////////////////////////////
 
 void ShaderAppManager::onNormalKeyboardKeyPressed(unsigned char key, int x, int y) {
+	
+	
+		switch (key)
+		{
+		case 'd':
+			// activate next shader
+			activateNextShader(true);							// 'd' button to select next shader
+			break;
+		case 'a':
+			// activate previous shader
+			activateNextShader(false);							// 'a' button to select previous shader
+			break;
+		}
+	
 	m_shaderBase->processNormalKeyInputs(key, x, y);			// delegate call to shader base class
 }
 
@@ -98,18 +117,9 @@ void ShaderAppManager::onSpecialKeyboardKeyPressed(int key, int x, int y) {
 // changes shader on mouse clicks
 void ShaderAppManager::onMouseButtonDown(int button, int state, int x, int y) {
 
-	if (state == GLUT_UP)										// if mouse button is up								
-	{
-		switch (button)
-		{
-		case GLUT_LEFT_BUTTON:
-			// activate next shader
-			activateNextShader(true);							// and mouse left button is released then activate next shader if any
-			break;
-		case GLUT_RIGHT_BUTTON:
-			// activate previous shader
-			activateNextShader(false);							// and mouse right button is released then activate previous shader if any
-			break;
+	if (button == GLUT_RIGHT_BUTTON) {
+		if (state == GLUT_UP) {
+			reloadShader();
 		}
 	}
 	m_shaderBase->processMouseInputs(button, state, x, y);      // delegate call to shader base class
