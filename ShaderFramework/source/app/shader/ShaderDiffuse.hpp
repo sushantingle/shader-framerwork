@@ -14,6 +14,8 @@ private:
 
 	// Member Variables
 	float m_rotationAngle;
+	GLuint loc;
+	float m_time;
 
 public:
 	ShaderDiffuse():m_rotationAngle(0) {}
