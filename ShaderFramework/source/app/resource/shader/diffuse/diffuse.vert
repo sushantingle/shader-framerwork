@@ -1,11 +1,24 @@
 // Diffuse vertex shader
 
-uniform float time;
-varying vec4 gl_Color;
+varying vec4 gl_FrontColor;
 
 void main(void)
 {			
-	vec4 v = vec4(gl_Vertex);
-	v.y = sin(5.0 * v.x + time) * 0.25;
-	gl_Position = gl_ModelViewProjectionMatrix * v;
+	vec3 normal, lightDir;
+	vec4 diffuse, ambient, globalAmbient;
+	float NDotL;
+
+	normal = normalize(gl_NormalMatrix * gl_Normal);
+
+	lightDir = normalize(vec3(gl_LightSource[0].position));
+
+	NDotL = max(dot(normal, lightDir), 0.0);
+
+	diffuse = gl_FrontMaterial.diffuse * (gl_LightSource[0].diffuse);
+	ambient = gl_FrontMaterial.ambient * gl_LightSource[0].ambient;
+	globalAmbient = gl_LightModel.ambient * gl_FrontMaterial.ambient;
+
+	gl_FrontColor = NDotL * diffuse + ambient + globalAmbient;
+
+	gl_Position = ftransform();
 }

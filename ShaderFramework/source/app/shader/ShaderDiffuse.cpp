@@ -1,13 +1,23 @@
 #include "ShaderDiffuse.hpp"
 
 void ShaderDiffuse::init() {
-	m_time = 0.0f;
-	glEnable(GL_DEPTH_TEST);
+	
+	GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	GLfloat mat_shininess[] = { 50.0f };
+	GLfloat light0_position[] = { 1.0f, 1.0f, 1.0f, 0.0f };
+	GLfloat light1_position[] = { 0.0f, 1.0f, 1.0f, 0.0f };
+	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
+	glShadeModel(GL_SMOOTH);
 
+	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+
+	glEnable(GL_DEPTH_TEST);
+	glEnable(GL_LIGHTING);
+	glEnable(GL_LIGHT0);
 	// Set shader parameters
 	setShader("diffuse/diffuse.vert", "diffuse/diffuse.frag");
-
-	loc = glGetUniformLocation(getProgramId(), "time");
 }
 
 void ShaderDiffuse::uninit() {
@@ -26,13 +36,11 @@ void ShaderDiffuse::render() {
 		m_cameraPosition.x + m_cameraRotation.x, 1.0f, m_cameraPosition.z + m_cameraRotation.z,
 		0.0f, 1.0f, 0.0f);
 
-	//glRotatef(m_cameraAngle, 0.0f, 1.0f, 0.0f);
-
-	//glPushMatrix();
-		glUniform1f(loc, m_time);
-		//glTranslated(0.0f, 0.0f, -50.0f);
-		glutSolidSphere(10.0f, 100, 100);
-		m_time += 0.1f;
-	//glPopMatrix();
+	glRotatef(m_cameraAngle, 0.0f, 1.0f, 0.0f);
+	
+	glPushMatrix();
+		glRotatef(m_rotationAngle, 0.0f, 1.0f, 0.0f);
+		glutSolidTeapot(2.0f);
+	glPopMatrix();
 
 }

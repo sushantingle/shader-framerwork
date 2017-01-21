@@ -24,7 +24,7 @@ namespace sf {
 		m_windowWidth	= _width;
 		m_windowHeight	= _height;
 
-		m_cameraPosition = Vector3<float>(0.0f, 0.0f, 5.0f);
+		m_cameraPosition = Vector3<float>(0.0f, 0.0f, 15.0f);
 		m_cameraRotation = Vector3<float>(0.0f, 0.0f, -1.0f);
 		m_cameraSpeed	= 0.5f;
 		m_cameraAngle	= 0.0f;
