@@ -121,6 +121,13 @@ namespace sf {
 		bool setShader(const char* vertexShader, const char* fragmentShader);
 
 		/*!
+			\brief This function destroys current active shader and create new shader
+
+			\param	vertex and fragment shader names
+		*/
+		void switchToShader(const char* vertexShader, const char* fragmentShader);
+
+		/*!
 			\brief This function removes active shader.
 			*/
 		bool removeShader();

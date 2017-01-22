@@ -9,8 +9,8 @@ namespace sf {
 	#define SHADER_ABSOLUTE_PATH "../source/app/resource/shader/"
 
 	// Menu Defines
-	#define MENU_ID_WIREFRAME_VIEW	1
-	#define MENU_ID_SOLID_VIEW		2
+	#define MENU_ID_WIREFRAME_VIEW	1001
+	#define MENU_ID_SOLID_VIEW		1002
 
 	
 
@@ -234,6 +234,11 @@ namespace sf {
 		return (infologLength > 1);
 	}
 
+	void ShaderInterface::switchToShader(const char* vertexShader, const char* fragmentShader) {
+		removeShader();
+
+		setShader(vertexShader, fragmentShader);
+	}
 	//////////////////////////////////////////////////////////////////////////
 	// Camera Projection
 	//////////////////////////////////////////////////////////////////////////

@@ -103,6 +103,10 @@
   <ItemGroup>
     <None Include="..\source\app\resource\shader\diffuse\diffuse.frag" />
     <None Include="..\source\app\resource\shader\diffuse\diffuse.vert" />
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.frag" />
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.vert" />
+    <None Include="..\source\app\resource\shader\diffuse\sine.frag" />
+    <None Include="..\source\app\resource\shader\diffuse\sine.vert" />
     <None Include="..\source\app\resource\shader\toon.frag" />
     <None Include="..\source\app\resource\shader\toon.vert" />
     <None Include="ClassDiagram.cd" />

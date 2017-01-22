@@ -13,7 +13,7 @@ private:
 	void render() override;
 
 	int createSpecialMenu() override;
-
+	void processSpecialMenuEvents(int menuId) override;
 	// Member Variables
 	float m_rotationAngle;
 

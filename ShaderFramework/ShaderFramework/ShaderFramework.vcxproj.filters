@@ -113,10 +113,22 @@
       <Filter>Resource Files\shader</Filter>
     </None>
     <None Include="ClassDiagram.cd" />
+    <None Include="..\source\app\resource\shader\diffuse\sine.frag">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\sine.vert">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
     <None Include="..\source\app\resource\shader\diffuse\diffuse.frag">
       <Filter>Resource Files\shader\diffuse</Filter>
     </None>
     <None Include="..\source\app\resource\shader\diffuse\diffuse.vert">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.frag">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.vert">
       <Filter>Resource Files\shader\diffuse</Filter>
     </None>
   </ItemGroup>

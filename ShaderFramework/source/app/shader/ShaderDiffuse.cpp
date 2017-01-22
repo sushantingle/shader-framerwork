@@ -1,13 +1,15 @@
 #include "ShaderDiffuse.hpp"
 
+#define MENU_ID_DIFFUSE_SHADER				1
+#define MENU_ID_DIFFUSE_PER_PIXEL_SHADER	2
+
 extern void processGlutMenuEvents(int option);
 
 void ShaderDiffuse::init() {
 	
 	GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
-	GLfloat mat_shininess[] = { 50.0f };
+	GLfloat mat_shininess[] = { 20.0f };
 	GLfloat light0_position[] = { 1.0f, 1.0f, 1.0f, 0.0f };
-	GLfloat light1_position[] = { 0.0f, 1.0f, 1.0f, 0.0f };
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	glShadeModel(GL_SMOOTH);
 
@@ -49,9 +51,24 @@ void ShaderDiffuse::render() {
 
 int ShaderDiffuse::createSpecialMenu() {
 
-	int customMenu = -1;
+	int customMenu = glutCreateMenu(processGlutMenuEvents);
 
 	// Implement custom special menus here
+	addMenuEntry("Diffuse", MENU_ID_DIFFUSE_SHADER);
+	addMenuEntry("Diffuse Per Pixel", MENU_ID_DIFFUSE_PER_PIXEL_SHADER);
 
 	return customMenu;
+}
+
+void ShaderDiffuse::processSpecialMenuEvents(int menuId) {
+	switch (menuId)
+	{
+	case MENU_ID_DIFFUSE_SHADER:
+		switchToShader("diffuse/diffuse.vert", "diffuse/diffuse.frag");
+		break;
+	case MENU_ID_DIFFUSE_PER_PIXEL_SHADER:
+		switchToShader("diffuse/diffuseperpixel.vert", "diffuse/diffuseperpixel.frag");
+		break;
+
+	}
 }
