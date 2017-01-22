@@ -1,6 +1,6 @@
 // diffuse fragment shader
 
-varying vec4 diffuse, ambient;
+varying vec4 diffuse, ambient, vertexColor;
 varying vec3 normal, halfVector;
 
 void main()
@@ -14,14 +14,14 @@ void main()
 
 	n = normalize(normal);
 	
-	NDotL = max(dot(n, lightDir), 0.0);
+	NDotL = max(dot(n, normalize(lightDir)), 0.0);
 
 	if(NDotL > 0.0) {
-		color += diffuse * NDotL;
+		//color += diffuse * NDotL;
 		halfV = normalize(halfVector);
 		NDotHV = max(dot(n, halfV), 0.0);
 
-		color += (gl_FrontMaterial.specular * gl_LightSource[0].specular * pow(NDotHV, gl_FrontMaterial.shininess));
+		color =  vertexColor * (ambient + diffuse * NDotL + gl_FrontMaterial.specular * gl_LightSource[0].specular * pow(NDotHV, gl_FrontMaterial.shininess));
 	}
 	gl_FragColor = color;
 }

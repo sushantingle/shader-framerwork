@@ -21,11 +21,11 @@ void main(void)
 	if(NDotL > 0.0) {
 		NDotHV = max(dot(normal, normalize(gl_LightSource[0].halfVector.xyz)), 0.0);
 		specular = gl_FrontMaterial.specular * gl_LightSource[0].specular * pow(NDotHV, gl_FrontMaterial.shininess);
-		gl_FrontColor = NDotL * diffuse + ambient + globalAmbient + specular;
+		gl_FrontColor = gl_Color * (NDotL * diffuse + ambient + globalAmbient + specular);
 	}
 	else
 	{
-		gl_FrontColor = NDotL * diffuse + ambient + globalAmbient;
+		gl_FrontColor = gl_Color * (NDotL * diffuse + ambient + globalAmbient);
 	}
 
 	gl_Position = ftransform();
