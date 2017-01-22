@@ -1,5 +1,7 @@
 #include "ShaderDiffuse.hpp"
 
+extern void processGlutMenuEvents(int option);
+
 void ShaderDiffuse::init() {
 	
 	GLfloat mat_specular[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -43,4 +45,13 @@ void ShaderDiffuse::render() {
 		glutSolidTeapot(2.0f);
 	glPopMatrix();
 
+}
+
+int ShaderDiffuse::createSpecialMenu() {
+
+	int customMenu = -1;
+
+	// Implement custom special menus here
+
+	return customMenu;
 }

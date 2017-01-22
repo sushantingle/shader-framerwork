@@ -73,6 +73,15 @@ public:
 	*/
 	void onMouseMoved(int x, int y);
 
+	/*!
+		\brief process clicks on menu items.
+
+		THis function notify shader class about pressed menu item
+
+		\param menuId is pressed menu item's unique id.
+	*/
+	void onMenuItemClicked(int menuId);
+
 private:
 
 	// Enumeration

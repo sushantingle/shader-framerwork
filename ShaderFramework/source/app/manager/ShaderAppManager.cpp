@@ -128,3 +128,7 @@ void ShaderAppManager::onMouseButtonDown(int button, int state, int x, int y) {
 void ShaderAppManager::onMouseMoved(int x, int y) {
 	m_shaderBase->processMouseMovement(x, y);					// delegate call to shader base class to handle camera movement
 }
+
+void ShaderAppManager::onMenuItemClicked(int menuId) {
+	m_shaderBase->processMenuEvents(menuId);
+}

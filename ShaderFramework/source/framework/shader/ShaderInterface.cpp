@@ -2,9 +2,18 @@
 #include <fstream>
 #include "../framework/datatype/fsVector.hpp"
 #include <string>
+
+extern void processGlutMenuEvents(int option);
 namespace sf {
 
 	#define SHADER_ABSOLUTE_PATH "../source/app/resource/shader/"
+
+	// Menu Defines
+	#define MENU_ID_WIREFRAME_VIEW	1
+	#define MENU_ID_SOLID_VIEW		2
+
+	
+
 	ShaderInterface::ShaderInterface() {
 
 	}
@@ -31,6 +40,8 @@ namespace sf {
 		m_deltaAngle	= 0.0f;
 		m_xOrigin		= -1;
 
+		createDefaultMenu();
+
 		glewInit();
 		// call init of derived class
 		init(); // derived->init();
@@ -41,6 +52,7 @@ namespace sf {
 		
 		removeShader();// remove current active shader
 
+		destroyMenu();
 		// call uninit of derived class
 		uninit();  // derived->uninit();
 	}
@@ -56,11 +68,59 @@ namespace sf {
 		// do common implementation here
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
+	
 		// call render of derived class
 		render();  // derived->render();
 
 		glutSwapBuffers();
+	}
+
+	//////////////////////////////////////////////////////////////////////////
+	// Menu Initialization
+	//////////////////////////////////////////////////////////////////////////
+
+	void ShaderInterface::createDefaultMenu() {
+
+		int defaultMenu = glutCreateMenu(processGlutMenuEvents);
+		addMenuEntry("Wireframe", MENU_ID_WIREFRAME_VIEW);
+		addMenuEntry("Solid", MENU_ID_SOLID_VIEW);
+
+		int customMenu = createSpecialMenu();
+
+		int menu = glutCreateMenu(processGlutMenuEvents);
+		glutAddSubMenu("default", defaultMenu);
+		if (customMenu != -1)
+			glutAddSubMenu("Custom Menu", customMenu);
+
+		glutAttachMenu(GLUT_RIGHT_BUTTON);
+	}
+
+	void ShaderInterface::addMenuEntry(const char* menuName, int menuId) {
+		glutAddMenuEntry(menuName, menuId);
+		m_menuIds.push_back(menuId);
+	}
+
+	void ShaderInterface::processMenuEvents(int menuId) {
+		switch (menuId)
+		{
+		case MENU_ID_WIREFRAME_VIEW:
+			glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
+			break;
+		case MENU_ID_SOLID_VIEW:
+			glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+			break;
+		}
+
+		processSpecialMenuEvents(menuId);
+	}
+
+	void ShaderInterface::destroyMenu() {
+		for (int id : m_menuIds) {
+			glutRemoveMenuItem(id);
+		}
+
+		m_menuIds.clear();
+		glutDetachMenu(GLUT_RIGHT_BUTTON);
 	}
 
 	//////////////////////////////////////////////////////////////////////////

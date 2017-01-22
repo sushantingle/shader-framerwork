@@ -12,6 +12,8 @@ private:
 	void update() override;
 	void render() override;
 
+	int createSpecialMenu() override;
+
 	// Member Variables
 	float m_rotationAngle;
 

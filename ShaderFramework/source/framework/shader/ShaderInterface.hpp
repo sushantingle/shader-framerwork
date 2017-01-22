@@ -4,6 +4,7 @@
 #include "GLEW/glew.h"
 #include "GL/glut.h"
 #include "../datatype/fsVector.hpp"
+#include <vector>
 
 namespace sf {
 	/*!
@@ -92,6 +93,23 @@ namespace sf {
 			*/
 		virtual void processMouseMovement(int x, int y);
 
+		/*!
+
+			\brief creates default Menu
+
+		*/
+		void createDefaultMenu();
+
+		/*!
+			\brief process menu clicks
+		*/
+		void processMenuEvents(int menuId);
+
+		/*!
+			\brief destroys All Menu created in shader
+		*/
+		void destroyMenu();
+
 	protected:
 
 		/*!
@@ -106,6 +124,13 @@ namespace sf {
 			\brief This function removes active shader.
 			*/
 		bool removeShader();
+
+		/*!
+			\brief Adds Menu entry
+			\param menuName is Menu Name
+			\param menuId is Menu Unique Id
+		*/
+		void addMenuEntry(const char* menuName, int menuId);
 
 		/*!
 			\brief returns program id
@@ -162,9 +187,27 @@ namespace sf {
 		/*!
 			/brief render function which child needs to implement
 
-			This function does the shader spcific render functionality
+			This function does the shader specific render functionality
 		*/
 		virtual void render() = 0;
+
+		/*!
+			\brief Create special menu
+
+			App can have Default Options and custom options only. If custom option are getting bit complicated,
+			then hirarchy should be created inside custom options only.
+
+			\warning we can not have more than one custom menu under main menu. We have to add sections in custom menu to 
+			achieve it.
+
+			\return -1 if not created special menu
+		*/
+		virtual int createSpecialMenu() { return -1; }
+
+		/*!
+			\brief Process special menu events
+		*/
+		virtual void processSpecialMenuEvents(int option) {}
 
 		/*!
 			\brief This function reads the shader file and returns char buffer.
@@ -206,7 +249,7 @@ namespace sf {
 		GLuint	m_programId;		//! \var holds active shader's program id
 		GLuint	m_vertexShaderId;	//! \var holds active vertex shader id.
 		GLuint	m_fragmentShaderId; //! \var holds active fragment shader id.
-		
+		std::vector<int> m_menuIds;
 	};
 }
 #endif //__SHADERINTERFACE_HPP__

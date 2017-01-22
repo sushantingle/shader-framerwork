@@ -47,6 +47,10 @@ void onMouseButtonDown(int button, int state, int x, int y) {
 void onMouseMoved(int x, int y) {
 	m_appManager->onMouseMoved(x, y);
 }
+
+void processGlutMenuEvents(int menuId) {
+	m_appManager->onMenuItemClicked(menuId);
+}
 /************************************************************************/
 /* App Main Function : Entry Point                                                                     */
 /************************************************************************/
