@@ -91,6 +91,7 @@ private:
 		enum class ShaderType {
 			SHADER_DEFAULT,		//!< This is the default shader.
 			SHADER_DIFFUSE,		//!< This defines diffuse shader
+			SHADER_GEOMTRY_BASIC, //!< This defines basic geometry shader
 			SHADER_COUNT,		//!< This defines number shaders app has.
 		};
 

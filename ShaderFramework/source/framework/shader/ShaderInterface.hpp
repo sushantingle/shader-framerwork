@@ -115,10 +115,11 @@ namespace sf {
 		/*!
 			\brief This function invokes the function to read shader, compiles it and then attach to the program.
 			IF shader compilation fails, this function invokes function to print error info.
+			empty default Geomtry shader name makes geometry shader optional.
 
-			\param	vertex and fragment shader names
+			\param	vertex, geometry and fragment shader names
 			*/
-		bool setShader(const char* vertexShader, const char* fragmentShader);
+		bool setShader(const char* vertexShader, const char* fragmentShader, const char* geometryShader = "");
 
 		/*!
 			\brief This function destroys current active shader and create new shader
@@ -223,6 +224,24 @@ namespace sf {
 		const char* readShaderFile(const char* fileName);
 
 		/*!
+			\brief creates vertex shader
+			\param vertex shader name
+		*/
+		void createVertexShader(const char* vertexShader);
+
+		/*!
+		\brief creates fragment shader
+		\param fragment shader name
+		*/
+		void createFragmentShader(const char* fragmentShader);
+
+		/*!
+		\brief creates geometry shader
+		\param geometry shader name
+		*/
+		void createGeometryShader(const char* geometryShader);
+
+		/*!
 			\brief This function prints error log if shader compilation fails and returns true.
 			\param obj : shader id
 		*/
@@ -256,6 +275,7 @@ namespace sf {
 		GLuint	m_programId;		//! \var holds active shader's program id
 		GLuint	m_vertexShaderId;	//! \var holds active vertex shader id.
 		GLuint	m_fragmentShaderId; //! \var holds active fragment shader id.
+		GLuint	m_geometryShaderId; //! \var holds active geometry shader id.
 		std::vector<int> m_menuIds;
 	};
 }

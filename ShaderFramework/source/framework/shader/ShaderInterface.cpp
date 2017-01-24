@@ -15,7 +15,10 @@ namespace sf {
 	
 
 	ShaderInterface::ShaderInterface() {
-
+		m_programId = 0;
+		m_vertexShaderId = 0;
+		m_fragmentShaderId = 0;
+		m_geometryShaderId = 0;
 	}
 
 	ShaderInterface::~ShaderInterface() {
@@ -155,33 +158,75 @@ namespace sf {
 		return buf;
 	}
 
-	bool ShaderInterface::setShader(const char* vertexShader, const char* fragmentShader) {
+	void ShaderInterface::createVertexShader(const char* vertexShader) {
+
+		if (std::strcmp(vertexShader, "") == 0) // Does not have vertex shader
+			return;
+
+		// Create vertex shader
 		m_vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
-		m_fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
 
+		// read vertex shader
 		const char* vs = readShaderFile(vertexShader);
-		const char* fs = readShaderFile(fragmentShader);
 
+		// add vertex shader source for compilation
 		glShaderSource(m_vertexShaderId, 1, &vs, NULL);
-		glShaderSource(m_fragmentShaderId, 1, &fs, NULL);
 
+		// compile vertex shader
 		glCompileShader(m_vertexShaderId);
-		if (printShaderInfoLog(m_vertexShaderId))
-			return false; // SHADER COMPILATION FAILED
-
-		glCompileShader(m_fragmentShaderId);
-		if (printShaderInfoLog(m_fragmentShaderId))
-			return false; // SHADER COMPILATION FAILED
-
-		m_programId = glCreateProgram();
+		printShaderInfoLog(m_vertexShaderId);
 
 		glAttachShader(m_programId, m_vertexShaderId);
-		if (printProgramInfoLog(m_programId))
-			return false; // SHADER ATTACHMENT TO PROGRAM FAILED
+		printProgramInfoLog(m_programId);
+
+	}
+
+	void ShaderInterface::createFragmentShader(const char* fragmentShader) {
+		
+		if (std::strcmp(fragmentShader, "") == 0) // Does not have fragment shader
+			return;
+		
+		m_fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
+
+		const char* fs = readShaderFile(fragmentShader);
+
+		glShaderSource(m_fragmentShaderId, 1, &fs, NULL);
+
+		glCompileShader(m_fragmentShaderId);
+		printShaderInfoLog(m_fragmentShaderId);
 
 		glAttachShader(m_programId, m_fragmentShaderId);
-		if (printProgramInfoLog(m_programId))
-			return false; // SHADER ATTACHMENT TO PROGRAM FAILED
+		printProgramInfoLog(m_programId);
+
+	}
+
+	void ShaderInterface::createGeometryShader(const char* geometryShader) {
+		
+		if (std::strcmp(geometryShader, "") == 0) // Does not have geometry shader
+			return;
+
+		m_geometryShaderId = glCreateShader(GL_GEOMETRY_SHADER);
+
+		const char* fs = readShaderFile(geometryShader);
+
+		glShaderSource(m_geometryShaderId, 1, &fs, NULL);
+
+		glCompileShader(m_geometryShaderId);
+		printShaderInfoLog(m_geometryShaderId);
+
+		glAttachShader(m_programId, m_geometryShaderId);
+		printProgramInfoLog(m_programId);
+	}
+
+	bool ShaderInterface::setShader(const char* vertexShader, const char* fragmentShader, const char* geometryShader) {
+		
+		m_programId = glCreateProgram();
+
+		createVertexShader(vertexShader);
+
+		createFragmentShader(fragmentShader);
+
+		createGeometryShader(geometryShader);
 
 		glLinkProgram(m_programId);
 		glUseProgram(m_programId);
@@ -209,7 +254,7 @@ namespace sf {
 		{
 			infoLog = (char *)malloc(infologLength);
 			glGetShaderInfoLog(obj, infologLength, &charsWritten, infoLog);
-			printf("%s\n", infoLog);
+			printf("Shader info: %s\n", infoLog);
 			free(infoLog);	
 		}
 		// If success the infoLogLength is 1 which means empty.. no error
@@ -227,7 +272,7 @@ namespace sf {
 		{
 			infoLog = (char *)malloc(infologLength);
 			glGetProgramInfoLog(obj, infologLength, &charsWritten, infoLog);
-			printf("%s\n", infoLog);
+			printf("program info: %s\n", infoLog);
 			free(infoLog);
 		}
 		// If success the infoLogLength is 1 which means empty.. no error

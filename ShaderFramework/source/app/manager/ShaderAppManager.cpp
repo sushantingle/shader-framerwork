@@ -1,6 +1,7 @@
 #include "ShaderAppManager.hpp"
 #include "../app/shader/ShaderDefault.hpp"
 #include "../app/shader/ShaderDiffuse.hpp"
+#include "../app/shader/GeometryShader.hpp"
 #include <assert.h>
 
 ShaderAppManager::ShaderAppManager() {
@@ -55,6 +56,9 @@ void ShaderAppManager::createObjectOfShaderType(ShaderType _shaderType) {
 		break;
 	case ShaderType::SHADER_DIFFUSE:
 		m_shaderBase = new ShaderDiffuse();
+		break;
+	case ShaderType::SHADER_GEOMTRY_BASIC:
+		m_shaderBase = new GeometryShader();
 		break;
 	}
 }

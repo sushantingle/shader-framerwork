@@ -80,6 +80,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\app\manager\ShaderAppManager.cpp" />
+    <ClCompile Include="..\source\app\shader\GeometryShader.cpp" />
     <ClCompile Include="..\source\app\shader\ShaderDefault.cpp" />
     <ClCompile Include="..\source\app\shader\ShaderDiffuse.cpp" />
     <ClCompile Include="..\source\framework\shader\ShaderInterface.cpp" />
@@ -87,6 +88,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\app\manager\ShaderAppManager.hpp" />
+    <ClInclude Include="..\source\app\shader\GeometryShader.hpp" />
     <ClInclude Include="..\source\app\shader\ShaderDefault.hpp" />
     <ClInclude Include="..\source\app\shader\ShaderDiffuse.hpp" />
     <ClInclude Include="..\source\external\GLEW\eglew.h" />
@@ -105,8 +107,15 @@
     <None Include="..\source\app\resource\shader\diffuse\diffuse.vert" />
     <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.frag" />
     <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.vert" />
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelpointlight.frag" />
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelpointlight.vert" />
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelspotlight.frag" />
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelspotlight.vert" />
     <None Include="..\source\app\resource\shader\diffuse\sine.frag" />
     <None Include="..\source\app\resource\shader\diffuse\sine.vert" />
+    <None Include="..\source\app\resource\shader\geometry_shader\basic.frag" />
+    <None Include="..\source\app\resource\shader\geometry_shader\basic.geom" />
+    <None Include="..\source\app\resource\shader\geometry_shader\basic.vert" />
     <None Include="..\source\app\resource\shader\toon.frag" />
     <None Include="..\source\app\resource\shader\toon.vert" />
     <None Include="ClassDiagram.cd" />

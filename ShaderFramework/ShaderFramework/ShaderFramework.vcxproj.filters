@@ -46,6 +46,9 @@
     <Filter Include="Resource Files\shader\diffuse">
       <UniqueIdentifier>{9ea85e98-5133-455b-a90f-e479903c3d9f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\shader\geometry_shader">
+      <UniqueIdentifier>{14d57727-ab8d-49dc-8088-d01904cea986}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
@@ -61,6 +64,9 @@
       <Filter>Source Files\App\shader</Filter>
     </ClCompile>
     <ClCompile Include="..\source\app\shader\ShaderDiffuse.cpp">
+      <Filter>Source Files\App\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\GeometryShader.cpp">
       <Filter>Source Files\App\shader</Filter>
     </ClCompile>
   </ItemGroup>
@@ -104,6 +110,9 @@
     <ClInclude Include="..\source\app\shader\ShaderDiffuse.hpp">
       <Filter>Source Files\App\shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\app\shader\GeometryShader.hpp">
+      <Filter>Source Files\App\shader</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\source\app\resource\shader\toon.frag">
@@ -130,6 +139,27 @@
     </None>
     <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.vert">
       <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelpointlight.frag">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelpointlight.vert">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelspotlight.frag">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\diffuse\diffuseperpixelspotlight.vert">
+      <Filter>Resource Files\shader\diffuse</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\geometry_shader\basic.frag">
+      <Filter>Resource Files\shader\geometry_shader</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\geometry_shader\basic.vert">
+      <Filter>Resource Files\shader\geometry_shader</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\geometry_shader\basic.geom">
+      <Filter>Resource Files\shader\geometry_shader</Filter>
     </None>
   </ItemGroup>
 </Project>
