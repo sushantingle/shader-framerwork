@@ -4,7 +4,9 @@
 #include "GLEW/glew.h"
 #include "GL/glut.h"
 #include "../datatype/fsVector.hpp"
+#include "../datatype/sfMatrix.hpp"
 #include <vector>
+#include "glm/glm.hpp"
 
 namespace sf {
 	/*!
@@ -19,6 +21,21 @@ namespace sf {
 	class ShaderInterface {
 
 	public:
+
+		struct ShaderData {
+		public:
+			ShaderData() {
+				programId		= 0;
+				vertexShaderId	= 0;
+				fragShaderId	= 0;
+				geomShaderId	= 0;
+			}
+
+			GLuint programId;
+			GLuint vertexShaderId;
+			GLuint fragShaderId;
+			GLuint geomShaderId;
+		};
 
 		ShaderInterface();
 		~ShaderInterface();
@@ -97,17 +114,17 @@ namespace sf {
 
 			\brief creates default Menu
 
-		*/
+			*/
 		void createDefaultMenu();
 
 		/*!
 			\brief process menu clicks
-		*/
+			*/
 		void processMenuEvents(int menuId);
 
 		/*!
 			\brief destroys All Menu created in shader
-		*/
+			*/
 		void destroyMenu();
 
 	protected:
@@ -119,13 +136,12 @@ namespace sf {
 
 			\param	vertex, geometry and fragment shader names
 			*/
-		bool setShader(const char* vertexShader, const char* fragmentShader, const char* geometryShader = "");
-
+		bool setShader(ShaderData& shaderData, const char* vertexShader, const char* fragmentShader, const char* geometryShader = "");
 		/*!
 			\brief This function destroys current active shader and create new shader
 
 			\param	vertex and fragment shader names
-		*/
+			*/
 		void switchToShader(const char* vertexShader, const char* fragmentShader);
 
 		/*!
@@ -137,29 +153,8 @@ namespace sf {
 			\brief Adds Menu entry
 			\param menuName is Menu Name
 			\param menuId is Menu Unique Id
-		*/
+			*/
 		void addMenuEntry(const char* menuName, int menuId);
-
-		/*!
-			\brief returns program id
-
-			\return GLuint programId
-		*/
-		GLuint getProgramId() { return m_programId; }
-		
-		/*!
-			\brief returns vertex shader id
-
-			\return GLuint vertexShaderId
-		*/
-		GLuint getVertexShaderId() { return m_vertexShaderId; }
-		
-		/*!
-		\brief returns fragment shader id
-
-		\return GLuint fragmentShaderId
-		*/
-		GLuint getFragmentShaderId() { return m_fragmentShaderId; }
 
 		// Camera Parameters
 		sf::Vector3<float> m_cameraPosition;	//! \var holds camera position in scene
@@ -169,89 +164,106 @@ namespace sf {
 		float m_deltaAngle;						//! \var holds camera rotation speed
 		float m_xOrigin;
 
+		// Matrices
+		glm::mat4 m_projectionMatrix;
+		glm::mat4 m_viewMatrix;
+		glm::mat4 m_modelMatrix;
+
+		// Shader Parameters	
+		ShaderData m_defaultShaderData;
+
+		// Window Parameters
+		int		m_windowWidth;	//! \var holds window width
+		int		m_windowHeight;	//! \var holds window height
+
 	private:
-		
+
 		/*!
 			/brief init function which child needs to implement
 
 			This function does the shader specific initialization.
-		*/
-		virtual void init() = 0;		
-		
+			*/
+		virtual void init() = 0;
+
 		/*!
 			/brief uninit function which child needs to implement
 
 			This function remove shader specific parameters and uninits active shader
-		*/
+			*/
 		virtual void uninit() = 0;
 
 		/*!
 			/brief update function which child needs to implement
 
 			This function does shader specific update functionality
-		*/
+			*/
 		virtual void update() = 0;
 
 		/*!
 			/brief render function which child needs to implement
 
 			This function does the shader specific render functionality
-		*/
+			*/
 		virtual void render() = 0;
 
 		/*!
 			\brief Create special menu
 
 			App can have Default Options and custom options only. If custom option are getting bit complicated,
-			then hirarchy should be created inside custom options only.
+			then hierarchy should be created inside custom options only.
 
-			\warning we can not have more than one custom menu under main menu. We have to add sections in custom menu to 
+			\warning we can not have more than one custom menu under main menu. We have to add sections in custom menu to
 			achieve it.
 
 			\return -1 if not created special menu
-		*/
+			*/
 		virtual int createSpecialMenu() { return -1; }
 
 		/*!
 			\brief Process special menu events
-		*/
+			*/
 		virtual void processSpecialMenuEvents(int option) {}
 
 		/*!
 			\brief This function reads the shader file and returns char buffer.
 			\param fileName : shader file name or absolute path
-		*/
+			*/
 		const char* readShaderFile(const char* fileName);
 
 		/*!
 			\brief creates vertex shader
-			\param vertex shader name
-		*/
-		void createVertexShader(const char* vertexShader);
+			\param vertex shader name, program id and shader id
+			*/
+		void createVertexShader(const char* vertexShader, ShaderData& shaderData);
 
 		/*!
 		\brief creates fragment shader
-		\param fragment shader name
+		\param fragment shader name, program id and shader id
 		*/
-		void createFragmentShader(const char* fragmentShader);
+		void createFragmentShader(const char* fragmentShader, ShaderData& shaderData);
 
 		/*!
 		\brief creates geometry shader
-		\param geometry shader name
+		\param geometry shader name, program id and shader id
 		*/
-		void createGeometryShader(const char* geometryShader);
+		void createGeometryShader(const char* geometryShader, ShaderData& shaderData);
 
 		/*!
 			\brief This function prints error log if shader compilation fails and returns true.
 			\param obj : shader id
-		*/
+			*/
 		bool printShaderInfoLog(GLuint obj);
 
 		/*!
 			\brief This function prints error log if program attachment fails and returns true.
 			\param obj : program id
-		*/
+			*/
 		bool printProgramInfoLog(GLuint obj);
+
+		/*!
+			\brief Removes custom shader if any
+			*/
+		virtual void removeCustomShader() {}
 
 		/*!
 			\brief To render text or 2d objects using pixel co-ordinate, this function
@@ -267,15 +279,8 @@ namespace sf {
 		*/
 		void restorePerspectiveProjection();
 
-		// Window Parameters
-		int		m_windowWidth;	//! \var holds window width
-		int		m_windowHeight;	//! \var holds window height
+		
 
-		// Shader Parameters
-		GLuint	m_programId;		//! \var holds active shader's program id
-		GLuint	m_vertexShaderId;	//! \var holds active vertex shader id.
-		GLuint	m_fragmentShaderId; //! \var holds active fragment shader id.
-		GLuint	m_geometryShaderId; //! \var holds active geometry shader id.
 		std::vector<int> m_menuIds;
 	};
 }

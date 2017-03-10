@@ -49,6 +49,12 @@
     <Filter Include="Resource Files\shader\geometry_shader">
       <UniqueIdentifier>{14d57727-ab8d-49dc-8088-d01904cea986}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\shader\deferred">
+      <UniqueIdentifier>{6a672329-8f42-4ec4-a744-8d76e59650d4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\glm">
+      <UniqueIdentifier>{c38e8a31-a370-47be-bb7b-ba130220ecf7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
@@ -67,6 +73,9 @@
       <Filter>Source Files\App\shader</Filter>
     </ClCompile>
     <ClCompile Include="..\source\app\shader\GeometryShader.cpp">
+      <Filter>Source Files\App\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\DeferredRendering.cpp">
       <Filter>Source Files\App\shader</Filter>
     </ClCompile>
   </ItemGroup>
@@ -112,6 +121,81 @@
     </ClInclude>
     <ClInclude Include="..\source\app\shader\GeometryShader.hpp">
       <Filter>Source Files\App\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\framework\datatype\sfMatrix.hpp">
+      <Filter>Source Files\Framework\datatype</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\app\shader\DeferredRendering.hpp">
+      <Filter>Source Files\App\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\common.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\exponential.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\ext.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\fwd.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\geometric.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\glm.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\integer.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat2x2.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat2x3.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat2x4.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat3x2.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat3x3.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat3x4.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat4x2.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat4x3.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\mat4x4.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\matrix.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\packing.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\trigonometric.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\vec2.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\vec3.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\vec4.hpp">
+      <Filter>Header Files\glm</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\glm\vector_relational.hpp">
+      <Filter>Header Files\glm</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -161,5 +245,16 @@
     <None Include="..\source\app\resource\shader\geometry_shader\basic.geom">
       <Filter>Resource Files\shader\geometry_shader</Filter>
     </None>
+    <None Include="..\source\app\resource\shader\deferred\geometry_pass.frag">
+      <Filter>Resource Files\shader\deferred</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\deferred\geometry_pass.vert">
+      <Filter>Resource Files\shader\deferred</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="..\source\external\glm\CMakeLists.txt">
+      <Filter>Header Files\glm</Filter>
+    </Text>
   </ItemGroup>
 </Project>

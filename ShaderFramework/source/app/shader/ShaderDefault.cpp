@@ -5,7 +5,7 @@ void ShaderDefault::init() {
 	glEnable(GL_DEPTH_TEST);
 
 	// Set shader parameters
-	setShader("toon.vert", "toon.frag");
+	setShader(m_defaultShaderData, "toon.vert", "toon.frag");
 }
 
 void ShaderDefault::uninit() {

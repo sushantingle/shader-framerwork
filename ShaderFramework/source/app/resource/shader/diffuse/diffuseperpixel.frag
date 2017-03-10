@@ -1,6 +1,6 @@
 // diffuse fragment shader
 
-varying vec4 diffuse, ambient, vertexColor;
+varying vec4 diffuse, ambient, vertexColor, ecPos;
 varying vec3 normal, halfVector;
 
 void main()
@@ -8,7 +8,7 @@ void main()
 	vec3 n, halfV,lightDir;
 	float NDotL, NDotHV;
 
-	lightDir = vec3(gl_LightSource[0].position);
+	lightDir = vec3(gl_LightSource[0].position - ecPos);
 
 	vec4 color = ambient;
 

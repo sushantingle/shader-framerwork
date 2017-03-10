@@ -7,8 +7,7 @@ void main(void)
 {			
 	normal = normalize(gl_NormalMatrix * gl_Normal);
 
-	ecPos = (gl_Vertex * gl_ModelViewProjectionMatrix);
-
+	ecPos = (gl_ModelViewMatrix * gl_Vertex);
 	halfVector = normalize(gl_LightSource[0].halfVector.xyz);
 
 	diffuse = gl_FrontMaterial.diffuse * (gl_LightSource[0].diffuse);

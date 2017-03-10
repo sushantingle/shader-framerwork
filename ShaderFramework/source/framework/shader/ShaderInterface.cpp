@@ -15,10 +15,7 @@ namespace sf {
 	
 
 	ShaderInterface::ShaderInterface() {
-		m_programId = 0;
-		m_vertexShaderId = 0;
-		m_fragmentShaderId = 0;
-		m_geometryShaderId = 0;
+		
 	}
 
 	ShaderInterface::~ShaderInterface() {
@@ -158,87 +155,96 @@ namespace sf {
 		return buf;
 	}
 
-	void ShaderInterface::createVertexShader(const char* vertexShader) {
+	void ShaderInterface::createVertexShader(const char* vertexShader, ShaderData& shaderData) {
 
 		if (std::strcmp(vertexShader, "") == 0) // Does not have vertex shader
 			return;
 
 		// Create vertex shader
-		m_vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
+		shaderData.vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
 
 		// read vertex shader
 		const char* vs = readShaderFile(vertexShader);
 
 		// add vertex shader source for compilation
-		glShaderSource(m_vertexShaderId, 1, &vs, NULL);
+		glShaderSource(shaderData.vertexShaderId, 1, &vs, NULL);
 
 		// compile vertex shader
-		glCompileShader(m_vertexShaderId);
-		printShaderInfoLog(m_vertexShaderId);
+		glCompileShader(shaderData.vertexShaderId);
+		printShaderInfoLog(shaderData.vertexShaderId);
 
-		glAttachShader(m_programId, m_vertexShaderId);
-		printProgramInfoLog(m_programId);
+		glAttachShader(shaderData.programId, shaderData.vertexShaderId);
+		printProgramInfoLog(shaderData.programId);
 
 	}
 
-	void ShaderInterface::createFragmentShader(const char* fragmentShader) {
+	void ShaderInterface::createFragmentShader(const char* fragmentShader, ShaderData& shaderData) {
 		
 		if (std::strcmp(fragmentShader, "") == 0) // Does not have fragment shader
 			return;
 		
-		m_fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
+		shaderData.fragShaderId = glCreateShader(GL_FRAGMENT_SHADER);
 
 		const char* fs = readShaderFile(fragmentShader);
 
-		glShaderSource(m_fragmentShaderId, 1, &fs, NULL);
+		glShaderSource(shaderData.fragShaderId, 1, &fs, NULL);
 
-		glCompileShader(m_fragmentShaderId);
-		printShaderInfoLog(m_fragmentShaderId);
+		glCompileShader(shaderData.fragShaderId);
+		printShaderInfoLog(shaderData.fragShaderId);
 
-		glAttachShader(m_programId, m_fragmentShaderId);
-		printProgramInfoLog(m_programId);
+		glAttachShader(shaderData.programId, shaderData.fragShaderId);
+		printProgramInfoLog(shaderData.programId);
 
 	}
 
-	void ShaderInterface::createGeometryShader(const char* geometryShader) {
+	void ShaderInterface::createGeometryShader(const char* geometryShader, ShaderData& shaderData) {
 		
 		if (std::strcmp(geometryShader, "") == 0) // Does not have geometry shader
 			return;
 
-		m_geometryShaderId = glCreateShader(GL_GEOMETRY_SHADER);
+		shaderData.geomShaderId = glCreateShader(GL_GEOMETRY_SHADER);
 
 		const char* fs = readShaderFile(geometryShader);
 
-		glShaderSource(m_geometryShaderId, 1, &fs, NULL);
+		glShaderSource(shaderData.geomShaderId, 1, &fs, NULL);
 
-		glCompileShader(m_geometryShaderId);
-		printShaderInfoLog(m_geometryShaderId);
+		glCompileShader(shaderData.geomShaderId);
+		printShaderInfoLog(shaderData.geomShaderId);
 
-		glAttachShader(m_programId, m_geometryShaderId);
-		printProgramInfoLog(m_programId);
+		glAttachShader(shaderData.programId, shaderData.geomShaderId);
+		printProgramInfoLog(shaderData.programId);
 	}
 
-	bool ShaderInterface::setShader(const char* vertexShader, const char* fragmentShader, const char* geometryShader) {
-		
-		m_programId = glCreateProgram();
+	bool ShaderInterface::setShader(ShaderData& shaderData, const char* vertexShader, const char* fragmentShader, const char* geometryShader) {
+		shaderData.programId = glCreateProgram();
 
-		createVertexShader(vertexShader);
+		createVertexShader(vertexShader, shaderData);
 
-		createFragmentShader(fragmentShader);
+		createFragmentShader(fragmentShader, shaderData);
 
-		createGeometryShader(geometryShader);
+		createGeometryShader(geometryShader, shaderData);
 
-		glLinkProgram(m_programId);
-		glUseProgram(m_programId);
+		glLinkProgram(shaderData.programId);
+		glUseProgram(shaderData.programId);
+
 		return true;
 	}
 
 	bool ShaderInterface::removeShader() {
-		glDetachShader(m_programId, m_vertexShaderId);		// detach vertex shader
-		glDetachShader(m_programId, m_fragmentShaderId);	// detach fragment shader
 
-		glDeleteShader(m_vertexShaderId);
-		glDeleteShader(m_fragmentShaderId);
+		// Remove custom shaders from derived class if any
+		removeCustomShader();
+
+		// Remove Default shader
+		glDetachShader(m_defaultShaderData.programId, m_defaultShaderData.vertexShaderId);		// detach vertex shader
+		glDetachShader(m_defaultShaderData.programId, m_defaultShaderData.fragShaderId);	// detach fragment shader
+		glDetachShader(m_defaultShaderData.programId, m_defaultShaderData.geomShaderId);
+
+		glDeleteShader(m_defaultShaderData.vertexShaderId);
+		glDeleteShader(m_defaultShaderData.fragShaderId);
+		glDeleteShader(m_defaultShaderData.geomShaderId);
+
+		glDeleteProgram(m_defaultShaderData.programId);
 
 		return true;
 	}
@@ -282,7 +288,7 @@ namespace sf {
 	void ShaderInterface::switchToShader(const char* vertexShader, const char* fragmentShader) {
 		removeShader();
 
-		setShader(vertexShader, fragmentShader);
+		setShader(m_defaultShaderData, vertexShader, fragmentShader);
 	}
 	//////////////////////////////////////////////////////////////////////////
 	// Camera Projection

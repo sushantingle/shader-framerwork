@@ -2,6 +2,8 @@
 #include "../app/shader/ShaderDefault.hpp"
 #include "../app/shader/ShaderDiffuse.hpp"
 #include "../app/shader/GeometryShader.hpp"
+#include "../app/shader/DeferredRendering.hpp"
+
 #include <assert.h>
 
 ShaderAppManager::ShaderAppManager() {
@@ -21,7 +23,7 @@ void ShaderAppManager::init(int _width, int _height) {
 	// call shader base init
 	m_windowWidth = _width;
 	m_windowHeight = _height;
-	m_shaderType = ShaderType::SHADER_DEFAULT;
+	m_shaderType = ShaderType::SHADER_DEFERRED;
 	createShader(m_shaderType);
 }
 
@@ -59,6 +61,9 @@ void ShaderAppManager::createObjectOfShaderType(ShaderType _shaderType) {
 		break;
 	case ShaderType::SHADER_GEOMTRY_BASIC:
 		m_shaderBase = new GeometryShader();
+		break;
+	case ShaderType::SHADER_DEFERRED:
+		m_shaderBase = new DeferredShader();
 		break;
 	}
 }
