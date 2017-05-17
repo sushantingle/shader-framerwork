@@ -2,10 +2,6 @@
 
 varying vec4 gl_FrontColor;
 
-varying mat4 projection;
-varying mat4 view;
-varying mat4 model;
-
 void main(void)
 {			
 	vec3 normal, lightDir;
@@ -32,5 +28,5 @@ void main(void)
 		gl_FrontColor = gl_Color * (NDotL * diffuse + ambient + globalAmbient);
 	}
 
-	gl_Position = model * view * projection * gl_Vertex;
+	gl_Position = ftransform();
 }

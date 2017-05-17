@@ -17,8 +17,6 @@ private:
 	// Member Variables
 	float m_rotationAngle;
 
-	GLint projMatLoc, viewMatLoc, modelMatLoc;
-
 public:
 	ShaderDiffuse():m_rotationAngle(0) {}
 	~ShaderDiffuse() {}

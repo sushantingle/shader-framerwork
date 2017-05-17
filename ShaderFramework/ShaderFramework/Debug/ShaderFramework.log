@@ -1,24 +1,16 @@
-﻿Build started 2/8/2017 7:37:35 PM.
+﻿Build started 5/17/2017 7:23:22 PM.
      1>Project "D:\Projects\Personal\ShaderProject\shader-framework-sushant-repo\ShaderFramework\ShaderFramework\ShaderFramework.vcxproj" on node 2 (Build target(s)).
      1>ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../source/external /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\source\app\manager\ShaderAppManager.cpp
-         ShaderAppManager.cpp
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(18): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(20): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(21): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(30): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(31): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(39): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(40): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(52): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(55): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(56): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\datatype\sfmatrix.hpp(59): warning C4018: '<' : signed/unsigned mismatch
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\app\manager\shaderappmanager.hpp(159): warning C4172: returning address of local variable or temporary
-     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\app\manager\shaderappmanager.hpp(166): warning C4172: returning address of local variable or temporary
+         C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I../source/external /ZI /nologo /W3 /WX- /Od /Oy- /D WIN32 /D _DEBUG /D _CONSOLE /D _LIB /D _UNICODE /D UNICODE /Gm /EHsc /RTC1 /MDd /GS /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Debug\\" /Fd"Debug\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\source\framework\shader\ShaderInterface.cpp
+         ShaderInterface.cpp
+     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\shader\shaderinterface.cpp(137): warning C4996: 'sprintf': This function or variable may be unsafe. Consider using sprintf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(356) : see declaration of 'sprintf'
+     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\shader\shaderinterface.cpp(139): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+                 c:\program files (x86)\microsoft visual studio 12.0\vc\include\stdio.h(211) : see declaration of 'fopen'
+     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\shader\shaderinterface.cpp(300): warning C4244: 'argument' : conversion from 'int' to 'GLfloat', possible loss of data
+     1>d:\projects\personal\shaderproject\shader-framework-sushant-repo\shaderframework\source\framework\shader\shaderinterface.cpp(356): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
        Link:
          C:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"D:\Projects\Personal\ShaderProject\shader-framework-sushant-repo\ShaderFramework\Debug\ShaderFramework.exe" /INCREMENTAL /NOLOGO glew32.lib freeglut.lib kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"D:\Projects\Personal\ShaderProject\shader-framework-sushant-repo\ShaderFramework\Debug\ShaderFramework.pdb" /SUBSYSTEM:CONSOLE /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"D:\Projects\Personal\ShaderProject\shader-framework-sushant-repo\ShaderFramework\Debug\ShaderFramework.lib" /MACHINE:X86 Debug\ShaderAppManager.obj
-         Debug\DeferredRendering.obj
          Debug\GeometryShader.obj
          Debug\ShaderDefault.obj
          Debug\ShaderDiffuse.obj
@@ -29,4 +21,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:01.97
+Time Elapsed 00:00:03.38

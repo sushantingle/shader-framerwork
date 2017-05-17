@@ -80,7 +80,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\app\manager\ShaderAppManager.cpp" />
-    <ClCompile Include="..\source\app\shader\DeferredRendering.cpp" />
     <ClCompile Include="..\source\app\shader\GeometryShader.cpp" />
     <ClCompile Include="..\source\app\shader\ShaderDefault.cpp" />
     <ClCompile Include="..\source\app\shader\ShaderDiffuse.cpp" />
@@ -89,7 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\app\manager\ShaderAppManager.hpp" />
-    <ClInclude Include="..\source\app\shader\DeferredRendering.hpp" />
     <ClInclude Include="..\source\app\shader\GeometryShader.hpp" />
     <ClInclude Include="..\source\app\shader\ShaderDefault.hpp" />
     <ClInclude Include="..\source\app\shader\ShaderDiffuse.hpp" />
@@ -97,40 +95,14 @@
     <ClInclude Include="..\source\external\GLEW\glew.h" />
     <ClInclude Include="..\source\external\GLEW\glxew.h" />
     <ClInclude Include="..\source\external\GLEW\wglew.h" />
-    <ClInclude Include="..\source\external\glm\common.hpp" />
-    <ClInclude Include="..\source\external\glm\exponential.hpp" />
-    <ClInclude Include="..\source\external\glm\ext.hpp" />
-    <ClInclude Include="..\source\external\glm\fwd.hpp" />
-    <ClInclude Include="..\source\external\glm\geometric.hpp" />
-    <ClInclude Include="..\source\external\glm\glm.hpp" />
-    <ClInclude Include="..\source\external\glm\integer.hpp" />
-    <ClInclude Include="..\source\external\glm\mat2x2.hpp" />
-    <ClInclude Include="..\source\external\glm\mat2x3.hpp" />
-    <ClInclude Include="..\source\external\glm\mat2x4.hpp" />
-    <ClInclude Include="..\source\external\glm\mat3x2.hpp" />
-    <ClInclude Include="..\source\external\glm\mat3x3.hpp" />
-    <ClInclude Include="..\source\external\glm\mat3x4.hpp" />
-    <ClInclude Include="..\source\external\glm\mat4x2.hpp" />
-    <ClInclude Include="..\source\external\glm\mat4x3.hpp" />
-    <ClInclude Include="..\source\external\glm\mat4x4.hpp" />
-    <ClInclude Include="..\source\external\glm\matrix.hpp" />
-    <ClInclude Include="..\source\external\glm\packing.hpp" />
-    <ClInclude Include="..\source\external\glm\trigonometric.hpp" />
-    <ClInclude Include="..\source\external\glm\vec2.hpp" />
-    <ClInclude Include="..\source\external\glm\vec3.hpp" />
-    <ClInclude Include="..\source\external\glm\vec4.hpp" />
-    <ClInclude Include="..\source\external\glm\vector_relational.hpp" />
     <ClInclude Include="..\source\external\GL\freeglut.h" />
     <ClInclude Include="..\source\external\GL\freeglut_ext.h" />
     <ClInclude Include="..\source\external\GL\freeglut_std.h" />
     <ClInclude Include="..\source\external\GL\glut.h" />
     <ClInclude Include="..\source\framework\datatype\fsVector.hpp" />
-    <ClInclude Include="..\source\framework\datatype\sfMatrix.hpp" />
     <ClInclude Include="..\source\framework\shader\ShaderInterface.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\source\app\resource\shader\deferred\geometry_pass.frag" />
-    <None Include="..\source\app\resource\shader\deferred\geometry_pass.vert" />
     <None Include="..\source\app\resource\shader\diffuse\diffuse.frag" />
     <None Include="..\source\app\resource\shader\diffuse\diffuse.vert" />
     <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.frag" />
@@ -147,9 +119,6 @@
     <None Include="..\source\app\resource\shader\toon.frag" />
     <None Include="..\source\app\resource\shader\toon.vert" />
     <None Include="ClassDiagram.cd" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="..\source\external\glm\CMakeLists.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
