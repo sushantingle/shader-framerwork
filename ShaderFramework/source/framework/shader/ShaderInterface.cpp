@@ -153,7 +153,7 @@ namespace sf {
 
 		buf = (char*)malloc((size + 1) * sizeof(char));
 		fread(buf, 1, size, fp);
-		buf[size] = NULL;
+		buf[size] = '\0';
 		fclose(fp);
 		return buf;
 	}

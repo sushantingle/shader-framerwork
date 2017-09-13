@@ -49,13 +49,6 @@ void ShaderDiffuse::render() {
 	glRotatef(m_cameraAngle, 0.0f, 1.0f, 0.0f);
 	glColor3f(1.0f, 1.0f, 0.0f);
 	glPushMatrix();
-		glBegin(GL_QUADS);
-		glVertex3f(-100.0f, 0.0f, -100.0f);
-		glVertex3f(-100.0f, 0.0f, 100.0f);
-		glVertex3f(100.0f, 0.0f, 100.0f);
-		glVertex3f(100.0f, 0.0f, -100.0f);
-		glEnd();
-
 		glRotatef(m_rotationAngle, 0.0f, 1.0f, 0.0f);
 		glutSolidTeapot(2.0f);
 	glPopMatrix();

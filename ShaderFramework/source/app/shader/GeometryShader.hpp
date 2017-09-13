@@ -14,5 +14,8 @@ private:
 
 	void update() override;
 	void render() override;
+
+	GLuint m_vao;
+	GLuint m_vbo;
 };
 #endif //__GEOMETRYSHADER_HPP__

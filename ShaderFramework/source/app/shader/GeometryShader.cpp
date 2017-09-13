@@ -4,8 +4,7 @@ void GeometryShader::init() {
 
 	setShader("geometry_shader/basic.vert", "geometry_shader/basic.frag","geometry_shader/basic.geom");
 
-	GLuint vbo;
-	glGenBuffers(1, &vbo);
+	glGenBuffers(1, &m_vbo);
 
 	float points[] = {
 		-0.5f, 0.5f, 1.0f, 0.0f, 0.0f,
@@ -14,13 +13,12 @@ void GeometryShader::init() {
 		-0.5f, -0.5f, 1.0f, 1.0f, 1.0f,
 	};
 
-	glBindBuffer(GL_ARRAY_BUFFER, vbo);
+	glBindBuffer(GL_ARRAY_BUFFER, m_vbo);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(points), points, GL_STATIC_DRAW);
 
 	// create VAO
-	GLuint vao;
-	glGenVertexArrays(1, &vao);
-	glBindVertexArray(vao);
+	glGenVertexArrays(1, &m_vao);
+	glBindVertexArray(m_vao);
 
 	// specify layout of point data
 	GLint posAttrib = glGetAttribLocation(getProgramId(), "pos");
@@ -33,7 +31,8 @@ void GeometryShader::init() {
 }
 
 void GeometryShader::uninit() {
-
+	glDeleteVertexArrays(1, &m_vao);
+	glDeleteBuffers(1, &m_vbo);
 }
 
 void GeometryShader::update() {
