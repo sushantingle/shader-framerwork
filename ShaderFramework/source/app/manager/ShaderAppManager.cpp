@@ -2,6 +2,7 @@
 #include "../app/shader/ShaderDefault.hpp"
 #include "../app/shader/ShaderDiffuse.hpp"
 #include "../app/shader/GeometryShader.hpp"
+#include "../app/shader/Texture/TextureTest.hpp"
 #include <assert.h>
 
 ShaderAppManager::ShaderAppManager() {
@@ -59,6 +60,9 @@ void ShaderAppManager::createObjectOfShaderType(ShaderType _shaderType) {
 		break;
 	case ShaderType::SHADER_GEOMTRY_BASIC:
 		m_shaderBase = new GeometryShader();
+		break;
+	case ShaderType::SHADER_TEXTURE_TEST:
+		m_shaderBase = new TextureTest();
 		break;
 	}
 }
