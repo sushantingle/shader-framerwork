@@ -11,6 +11,9 @@ private:
 	void update() override;
 	void render() override;
 
+	unsigned int VBO, VAO, EBO;
+	GLuint texture[2];
+
 public :
 	TextureTest() {	}
 	~TextureTest() { }

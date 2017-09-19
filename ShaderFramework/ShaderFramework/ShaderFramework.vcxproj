@@ -42,7 +42,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>../lib/glut;../lib/glew/Win32;../lib/soil;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../lib/glut;../lib/glew/Win32;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -59,7 +59,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;freeglut.lib;libSOIL.a;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -85,6 +85,7 @@
     <ClCompile Include="..\source\app\shader\ShaderDefault.cpp" />
     <ClCompile Include="..\source\app\shader\ShaderDiffuse.cpp" />
     <ClCompile Include="..\source\app\shader\Texture\TextureTest.cpp" />
+    <ClCompile Include="..\source\external\stbi\stb_image.cpp" />
     <ClCompile Include="..\source\framework\shader\ShaderInterface.cpp" />
     <ClCompile Include="..\source\MainApp.cpp" />
   </ItemGroup>
@@ -102,6 +103,7 @@
     <ClInclude Include="..\source\external\GL\freeglut_ext.h" />
     <ClInclude Include="..\source\external\GL\freeglut_std.h" />
     <ClInclude Include="..\source\external\GL\glut.h" />
+    <ClInclude Include="..\source\external\stbi\stb_image.h" />
     <ClInclude Include="..\source\framework\datatype\fsVector.hpp" />
     <ClInclude Include="..\source\framework\shader\ShaderInterface.hpp" />
   </ItemGroup>
@@ -119,9 +121,16 @@
     <None Include="..\source\app\resource\shader\geometry_shader\basic.frag" />
     <None Include="..\source\app\resource\shader\geometry_shader\basic.geom" />
     <None Include="..\source\app\resource\shader\geometry_shader\basic.vert" />
+    <None Include="..\source\app\resource\shader\texture\texturetest.frag" />
+    <None Include="..\source\app\resource\shader\texture\texturetest.vert" />
     <None Include="..\source\app\resource\shader\toon.frag" />
     <None Include="..\source\app\resource\shader\toon.vert" />
     <None Include="ClassDiagram.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\source\app\resource\textures\awesomeface.png" />
+    <Image Include="..\source\app\resource\textures\container.jpg" />
+    <Image Include="..\source\app\resource\textures\mouse_fall.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

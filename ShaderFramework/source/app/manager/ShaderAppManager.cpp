@@ -22,7 +22,7 @@ void ShaderAppManager::init(int _width, int _height) {
 	// call shader base init
 	m_windowWidth = _width;
 	m_windowHeight = _height;
-	m_shaderType = ShaderType::SHADER_DIFFUSE;
+	m_shaderType = ShaderType::SHADER_TEXTURE_TEST;
 	createShader(m_shaderType);
 }
 

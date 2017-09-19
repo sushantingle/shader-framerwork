@@ -5,6 +5,7 @@
 #include "GL/glut.h"
 #include "../datatype/fsVector.hpp"
 #include <vector>
+#include "stbi\stb_image.h"
 
 namespace sf {
 	/*!

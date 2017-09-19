@@ -22,9 +22,6 @@
     <Filter Include="Resource Files\shader">
       <UniqueIdentifier>{2f4c215d-e678-47b5-a468-c38bfda874aa}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Resource Files\textures">
-      <UniqueIdentifier>{abca7802-6bc2-400a-93d4-9a8ae323fc35}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\App">
       <UniqueIdentifier>{f9966ead-e0f1-49c3-83ab-66476956067d}</UniqueIdentifier>
     </Filter>
@@ -52,6 +49,18 @@
     <Filter Include="Source Files\App\shader\Texture">
       <UniqueIdentifier>{e450e2d1-4191-4693-961e-48759a2b9fbc}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\external">
+      <UniqueIdentifier>{93bbf556-4058-44cd-85d6-dc0888d740b0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shader\texture">
+      <UniqueIdentifier>{f8694d0a-9cf9-4698-894c-c94716d3ba99}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\external\stbi">
+      <UniqueIdentifier>{224a63b9-e0fa-4ed9-b48c-e64b79f21c06}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\texture">
+      <UniqueIdentifier>{ae6bfdda-2e52-4cc8-82bc-c20606f55fa7}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
@@ -74,6 +83,9 @@
     </ClCompile>
     <ClCompile Include="..\source\app\shader\Texture\TextureTest.cpp">
       <Filter>Source Files\App\shader\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\external\stbi\stb_image.cpp">
+      <Filter>Source Files\external\stbi</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -121,6 +133,9 @@
     </ClInclude>
     <ClInclude Include="..\source\app\shader\Texture\TextureTest.hpp">
       <Filter>Source Files\App\shader\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\external\stbi\stb_image.h">
+      <Filter>Source Files\external\stbi</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -170,5 +185,22 @@
     <None Include="..\source\app\resource\shader\geometry_shader\basic.geom">
       <Filter>Resource Files\shader\geometry_shader</Filter>
     </None>
+    <None Include="..\source\app\resource\shader\texture\texturetest.frag">
+      <Filter>Resource Files\shader\texture</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\texture\texturetest.vert">
+      <Filter>Resource Files\shader\texture</Filter>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="..\source\app\resource\textures\awesomeface.png">
+      <Filter>Resource Files\texture</Filter>
+    </Image>
+    <Image Include="..\source\app\resource\textures\container.jpg">
+      <Filter>Resource Files\texture</Filter>
+    </Image>
+    <Image Include="..\source\app\resource\textures\mouse_fall.png">
+      <Filter>Resource Files\texture</Filter>
+    </Image>
   </ItemGroup>
 </Project>
