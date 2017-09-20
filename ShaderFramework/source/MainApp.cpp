@@ -1,8 +1,8 @@
 #include "app/manager/ShaderAppManager.hpp"
 
 // Window Parameters
-int width = 1280;
-int height = 800;
+int width = 800;
+int height = 600;
 
 // Shader App Manager
 ShaderAppManager* m_appManager;

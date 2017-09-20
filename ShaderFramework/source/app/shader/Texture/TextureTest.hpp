@@ -11,9 +11,11 @@ private:
 	void update() override;
 	void render() override;
 
+	void renderFrame(glm::vec3 pos, glm::vec3 axis, float angle);
+
 	unsigned int VBO, VAO, EBO;
 	GLuint texture[2];
-
+	float m_rotationAngle;
 public :
 	TextureTest() {	}
 	~TextureTest() { }

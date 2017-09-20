@@ -6,6 +6,9 @@
 #include "../datatype/fsVector.hpp"
 #include <vector>
 #include "stbi\stb_image.h"
+#include "glm\glm.hpp"
+#include "glm/gtx/transform.hpp"
+#include "glm/gtc/type_ptr.hpp"
 
 namespace sf {
 	/*!
@@ -162,6 +165,10 @@ namespace sf {
 		*/
 		GLuint getFragmentShaderId() { return m_fragmentShaderId; }
 
+		// Window Parameters
+		int		m_windowWidth;	//! \var holds window width
+		int		m_windowHeight;	//! \var holds window height
+
 		// Camera Parameters
 		sf::Vector3<float> m_cameraPosition;	//! \var holds camera position in scene
 		sf::Vector3<float> m_cameraRotation;	//! \var holds camera rotation in scene
@@ -267,10 +274,6 @@ namespace sf {
 						orthographic before.
 		*/
 		void restorePerspectiveProjection();
-
-		// Window Parameters
-		int		m_windowWidth;	//! \var holds window width
-		int		m_windowHeight;	//! \var holds window height
 
 		// Shader Parameters
 		GLuint	m_programId;		//! \var holds active shader's program id

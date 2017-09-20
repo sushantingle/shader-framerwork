@@ -221,11 +221,11 @@ namespace sf {
 	bool ShaderInterface::setShader(const char* vertexShader, const char* fragmentShader, const char* geometryShader) {
 		
 		m_programId = glCreateProgram();
-		printf("shader : %s", vertexShader);
+		//printf("shader : %s", vertexShader);
 		createVertexShader(vertexShader);
-		printf("shader : %s", fragmentShader);
+		//printf("shader : %s", fragmentShader);
 		createFragmentShader(fragmentShader);
-		printf("shader : %s", geometryShader);
+		//printf("shader : %s", geometryShader);
 		createGeometryShader(geometryShader);
 
 		glLinkProgram(m_programId);
@@ -239,7 +239,7 @@ namespace sf {
 
 		glDeleteShader(m_vertexShaderId);
 		glDeleteShader(m_fragmentShaderId);
-
+		glUseProgram(0);
 		return true;
 	}
 
