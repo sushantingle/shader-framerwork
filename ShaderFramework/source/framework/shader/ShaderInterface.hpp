@@ -9,6 +9,8 @@
 #include "glm\glm.hpp"
 #include "glm/gtx/transform.hpp"
 #include "glm/gtc/type_ptr.hpp"
+#include <map>
+#include "Shader.hpp"
 
 namespace sf {
 	/*!
@@ -115,55 +117,14 @@ namespace sf {
 		void destroyMenu();
 
 	protected:
-
-		/*!
-			\brief This function invokes the function to read shader, compiles it and then attach to the program.
-			IF shader compilation fails, this function invokes function to print error info.
-			empty default Geomtry shader name makes geometry shader optional.
-
-			\param	vertex, geometry and fragment shader names
-			*/
-		bool setShader(const char* vertexShader, const char* fragmentShader, const char* geometryShader = "");
-
-		/*!
-			\brief This function destroys current active shader and create new shader
-
-			\param	vertex and fragment shader names
-		*/
-		void switchToShader(const char* vertexShader, const char* fragmentShader);
-
-		/*!
-			\brief This function removes active shader.
-			*/
-		bool removeShader();
-
+		
+		void addShader(int id, const char* vert, const char* frag, const char* geom);
 		/*!
 			\brief Adds Menu entry
 			\param menuName is Menu Name
 			\param menuId is Menu Unique Id
 		*/
 		void addMenuEntry(const char* menuName, int menuId);
-
-		/*!
-			\brief returns program id
-
-			\return GLuint programId
-		*/
-		GLuint getProgramId() { return m_programId; }
-		
-		/*!
-			\brief returns vertex shader id
-
-			\return GLuint vertexShaderId
-		*/
-		GLuint getVertexShaderId() { return m_vertexShaderId; }
-		
-		/*!
-		\brief returns fragment shader id
-
-		\return GLuint fragmentShaderId
-		*/
-		GLuint getFragmentShaderId() { return m_fragmentShaderId; }
 
 		// Window Parameters
 		int		m_windowWidth;	//! \var holds window width
@@ -177,6 +138,7 @@ namespace sf {
 		float m_deltaAngle;						//! \var holds camera rotation speed
 		float m_xOrigin;
 
+		std::map<int, Shader*> m_shaders;
 	private:
 		
 		/*!
@@ -224,42 +186,6 @@ namespace sf {
 			\brief Process special menu events
 		*/
 		virtual void processSpecialMenuEvents(int option) {}
-
-		/*!
-			\brief This function reads the shader file and returns char buffer.
-			\param fileName : shader file name or absolute path
-		*/
-		const char* readShaderFile(const char* fileName);
-
-		/*!
-			\brief creates vertex shader
-			\param vertex shader name
-		*/
-		void createVertexShader(const char* vertexShader);
-
-		/*!
-		\brief creates fragment shader
-		\param fragment shader name
-		*/
-		void createFragmentShader(const char* fragmentShader);
-
-		/*!
-		\brief creates geometry shader
-		\param geometry shader name
-		*/
-		void createGeometryShader(const char* geometryShader);
-
-		/*!
-			\brief This function prints error log if shader compilation fails and returns true.
-			\param obj : shader id
-		*/
-		bool printShaderInfoLog(GLuint obj);
-
-		/*!
-			\brief This function prints error log if program attachment fails and returns true.
-			\param obj : program id
-		*/
-		bool printProgramInfoLog(GLuint obj);
 
 		/*!
 			\brief To render text or 2d objects using pixel co-ordinate, this function

@@ -70,13 +70,14 @@ glEnableVertexAttribArray(1);
 glVertexAttribPointer(2, 2, GL_FLOAT, GL_FALSE, 8 * sizeof(float), (void*)(6 * sizeof(float)));
 glEnableVertexAttribArray(2);
 
-setShader("texture/texturetest.vert", "texture/texturetest.frag");
-glUniform1i(glGetUniformLocation(getProgramId(), "inTexture1"), 0); // set it manually
-glUniform1i(glGetUniformLocation(getProgramId(), "inTexture2"), 1); // set it manually
+addShader(0, "texture/texturetest.vert", "texture/texturetest.frag", "");
+m_shaders[0]->useProgram();
+glUniform1i(glGetUniformLocation(m_shaders[0]->getProgramId(), "inTexture1"), 0); // set it manually
+glUniform1i(glGetUniformLocation(m_shaders[0]->getProgramId(), "inTexture2"), 1); // set it manually
 	
 glm::mat4 projection;
 projection = glm::perspective(glm::radians(45.0f), (float)m_windowWidth / (float)m_windowHeight, 0.1f, 100.0f);
-unsigned int projectionLoc = glGetUniformLocation(getProgramId(), "projection");
+unsigned int projectionLoc = glGetUniformLocation(m_shaders[0]->getProgramId(), "projection");
 glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
 }
 
@@ -95,7 +96,7 @@ void TextureTest::render() {
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-
+	
 	gluLookAt(m_cameraPosition.x, 1.0f, m_cameraPosition.z,
 		m_cameraPosition.x + m_cameraRotation.x, 1.0f, m_cameraPosition.z + m_cameraRotation.z,
 		0.0f, 1.0f, 0.0f);
@@ -103,7 +104,7 @@ void TextureTest::render() {
 	glm::mat4 view;
 	glm::vec3 target = glm::vec3(m_cameraPosition.x + m_cameraRotation.x, m_cameraPosition.y + m_cameraRotation.y, m_cameraPosition.z + m_cameraRotation.z);
 	view = glm::lookAt(glm::vec3(m_cameraPosition.x, m_cameraPosition.y, m_cameraPosition.z), target, glm::vec3(0.0f, 1.0f, 0.0f));
-	unsigned int viewLoc = glGetUniformLocation(getProgramId(), "view");
+	unsigned int viewLoc = glGetUniformLocation(m_shaders[0]->getProgramId(), "view");
 	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
 	
 	renderFrame(glm::vec3(1.0f, 0.0f, -5.0f), glm::vec3(0.3f, 0.5f, 0.0f), m_rotationAngle / 2.0f);
@@ -122,7 +123,7 @@ void TextureTest::renderFrame(glm::vec3 pos, glm::vec3 axis, float angle)
 	model = glm::rotate(model, angle, axis);
 	
 	// retrieve the matrix uniform locations
-	unsigned int modelLoc = glGetUniformLocation(getProgramId(), "model");
+	unsigned int modelLoc = glGetUniformLocation(m_shaders[0]->getProgramId(), "model");
 	// pass them to the shaders (3 different ways)
 	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
 	glBindVertexArray(VAO);

@@ -87,6 +87,9 @@
     <ClCompile Include="..\source\external\stbi\stb_image.cpp">
       <Filter>Source Files\external\stbi</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\framework\shader\Shader.cpp">
+      <Filter>Source Files\Framework\shader</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\external\GL\freeglut.h">
@@ -136,6 +139,9 @@
     </ClInclude>
     <ClInclude Include="..\source\external\stbi\stb_image.h">
       <Filter>Source Files\external\stbi</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\framework\shader\Shader.hpp">
+      <Filter>Source Files\Framework\shader</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

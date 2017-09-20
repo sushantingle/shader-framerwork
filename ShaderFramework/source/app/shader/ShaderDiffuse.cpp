@@ -25,7 +25,12 @@ void ShaderDiffuse::init() {
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
 	// Set shader parameters
-	setShader("diffuse/diffuse.vert", "diffuse/diffuse.frag");
+	addShader(0, "diffuse/diffuse.vert", "diffuse/diffuse.frag","");
+	addShader(1, "diffuse/diffuseperpixel.vert", "diffuse/diffuseperpixel.frag", "");
+	addShader(2, "diffuse/diffuseperpixelpointlight.vert", "diffuse/diffuseperpixelpointlight.frag", "");
+	addShader(3, "diffuse/diffuseperpixelspotlight.vert", "diffuse/diffuseperpixelspotlight.frag", "");
+
+	m_shaders[0]->useProgram();
 }
 
 void ShaderDiffuse::uninit() {
@@ -41,7 +46,6 @@ void ShaderDiffuse::render() {
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
 
-	
 	gluLookAt(m_cameraPosition.x, 1.0f, m_cameraPosition.z,
 		m_cameraPosition.x + m_cameraRotation.x, 1.0f, m_cameraPosition.z + m_cameraRotation.z,
 		0.0f, 1.0f, 0.0f);
@@ -72,16 +76,16 @@ void ShaderDiffuse::processSpecialMenuEvents(int menuId) {
 	switch (menuId)
 	{
 	case MENU_ID_DIFFUSE_SHADER:
-		switchToShader("diffuse/diffuse.vert", "diffuse/diffuse.frag");
+		m_shaders[0]->useProgram();
 		break;
 	case MENU_ID_DIFFUSE_PER_PIXEL_SHADER:
-		switchToShader("diffuse/diffuseperpixel.vert", "diffuse/diffuseperpixel.frag");
+		m_shaders[1]->useProgram();
 		break;
 	case MENU_ID_DIFFUSE_POINT_LIGHT:
-		switchToShader("diffuse/diffuseperpixelpointlight.vert", "diffuse/diffuseperpixelpointlight.frag");
+		m_shaders[2]->useProgram();
 		break;
 	case MENU_ID_DIFFUSE_SPOT_LIGHT:
-		switchToShader("diffuse/diffuseperpixelspotlight.vert", "diffuse/diffuseperpixelspotlight.frag");
+		m_shaders[3]->useProgram();
 		break;
 	}
 }

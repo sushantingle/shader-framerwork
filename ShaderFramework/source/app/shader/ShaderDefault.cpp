@@ -5,7 +5,7 @@ void ShaderDefault::init() {
 	glEnable(GL_DEPTH_TEST);
 
 	// Set shader parameters
-	setShader("toon.vert", "toon.frag");
+	addShader(0, "toon.vert", "toon.frag", "");
 }
 
 void ShaderDefault::uninit() {
@@ -19,6 +19,8 @@ void ShaderDefault::update() {
 void ShaderDefault::render() {
 
 	glLoadIdentity();
+
+	m_shaders[0]->useProgram();
 
 	gluLookAt(m_cameraPosition.x, 1.0f, m_cameraPosition.z,
 		m_cameraPosition.x + m_cameraRotation.x, 1.0f, m_cameraPosition.z + m_cameraRotation.z,

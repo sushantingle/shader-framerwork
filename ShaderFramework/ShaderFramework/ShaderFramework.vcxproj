@@ -86,6 +86,7 @@
     <ClCompile Include="..\source\app\shader\ShaderDiffuse.cpp" />
     <ClCompile Include="..\source\app\shader\Texture\TextureTest.cpp" />
     <ClCompile Include="..\source\external\stbi\stb_image.cpp" />
+    <ClCompile Include="..\source\framework\shader\Shader.cpp" />
     <ClCompile Include="..\source\framework\shader\ShaderInterface.cpp" />
     <ClCompile Include="..\source\MainApp.cpp" />
   </ItemGroup>
@@ -105,6 +106,7 @@
     <ClInclude Include="..\source\external\GL\glut.h" />
     <ClInclude Include="..\source\external\stbi\stb_image.h" />
     <ClInclude Include="..\source\framework\datatype\fsVector.hpp" />
+    <ClInclude Include="..\source\framework\shader\Shader.hpp" />
     <ClInclude Include="..\source\framework\shader\ShaderInterface.hpp" />
   </ItemGroup>
   <ItemGroup>

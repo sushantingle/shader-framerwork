@@ -2,7 +2,7 @@
 
 void GeometryShader::init() {
 
-	setShader("geometry_shader/basic.vert", "geometry_shader/basic.frag","geometry_shader/basic.geom");
+	addShader(0, "geometry_shader/basic.vert", "geometry_shader/basic.frag","geometry_shader/basic.geom");
 
 	glGenBuffers(1, &m_vbo);
 
@@ -21,11 +21,11 @@ void GeometryShader::init() {
 	glBindVertexArray(m_vao);
 
 	// specify layout of point data
-	GLint posAttrib = glGetAttribLocation(getProgramId(), "pos");
+	GLint posAttrib = glGetAttribLocation(m_shaders[0]->getProgramId(), "pos");
 	glEnableVertexAttribArray(posAttrib);
 	glVertexAttribPointer(posAttrib, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), 0);
 
-	GLint colorAttrib = glGetAttribLocation(getProgramId(), "color");
+	GLint colorAttrib = glGetAttribLocation(m_shaders[0]->getProgramId(), "color");
 	glEnableVertexAttribArray(colorAttrib);
 	glVertexAttribPointer(colorAttrib, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*) (2 * sizeof(float)));
 }
@@ -40,5 +40,6 @@ void GeometryShader::update() {
 }
 
 void GeometryShader::render() {
+	m_shaders[0]->useProgram();
 	glDrawArrays(GL_POINTS, 0, 4);
 }

@@ -22,7 +22,9 @@ namespace sf {
 	}
 
 	ShaderInterface::~ShaderInterface() {
-
+		for (std::map<int, Shader*>::iterator it = m_shaders.begin(); it != m_shaders.end(); it++)
+			delete it->second;
+		m_shaders.clear();
 	}
 
 	//////////////////////////////////////////////////////////////////////////
@@ -53,8 +55,6 @@ namespace sf {
 	void ShaderInterface::baseUninit() {
 		// Do common implementation here
 		
-		removeShader();// remove current active shader
-
 		destroyMenu();
 		// call uninit of derived class
 		uninit();  // derived->uninit();
@@ -126,163 +126,10 @@ namespace sf {
 		glutDetachMenu(GLUT_RIGHT_BUTTON);
 	}
 
-	//////////////////////////////////////////////////////////////////////////
-	// Shader Setup
-	//////////////////////////////////////////////////////////////////////////
-
-	const char* ShaderInterface::readShaderFile(const char* fileName) {
-		
-		int strLength = strlen(SHADER_ABSOLUTE_PATH) + strlen(fileName);
-		char* filePath = (char*) malloc(strLength + 1);
-		std::sprintf(filePath, "%s%s", SHADER_ABSOLUTE_PATH, fileName);
-		filePath[strLength] = '\0';
-		FILE* fp = fopen(filePath, "r");
-		char* buf;
-		long size;
-
-		if (fp == NULL)
-		{
-			printf("File Not Found : %s", filePath);
-			return NULL;
-		}
-		free(filePath);
-
-		fseek(fp, 0L, SEEK_END);//go to end
-		size = ftell(fp);       //get size
-		fseek(fp, 0L, SEEK_SET);//go to beginning
-
-		buf = (char*)malloc((size + 1) * sizeof(char));
-		fread(buf, 1, size, fp);
-		buf[size] = '\0';
-		fclose(fp);
-		return buf;
-	}
-
-	void ShaderInterface::createVertexShader(const char* vertexShader) {
-
-		if (std::strcmp(vertexShader, "") == 0) // Does not have vertex shader
-			return;
-
-		// Create vertex shader
-		m_vertexShaderId = glCreateShader(GL_VERTEX_SHADER);
-
-		// read vertex shader
-		const char* vs = readShaderFile(vertexShader);
-
-		// add vertex shader source for compilation
-		glShaderSource(m_vertexShaderId, 1, &vs, NULL);
-
-		// compile vertex shader
-		glCompileShader(m_vertexShaderId);
-		printShaderInfoLog(m_vertexShaderId);
-
-		glAttachShader(m_programId, m_vertexShaderId);
-		printProgramInfoLog(m_programId);
-
-	}
-
-	void ShaderInterface::createFragmentShader(const char* fragmentShader) {
-		
-		if (std::strcmp(fragmentShader, "") == 0) // Does not have fragment shader
-			return;
-		
-		m_fragmentShaderId = glCreateShader(GL_FRAGMENT_SHADER);
-
-		const char* fs = readShaderFile(fragmentShader);
-
-		glShaderSource(m_fragmentShaderId, 1, &fs, NULL);
-
-		glCompileShader(m_fragmentShaderId);
-		printShaderInfoLog(m_fragmentShaderId);
-
-		glAttachShader(m_programId, m_fragmentShaderId);
-		printProgramInfoLog(m_programId);
-
-	}
-
-	void ShaderInterface::createGeometryShader(const char* geometryShader) {
-		
-		if (std::strcmp(geometryShader, "") == 0) // Does not have geometry shader
-			return;
-
-		m_geometryShaderId = glCreateShader(GL_GEOMETRY_SHADER);
-
-		const char* fs = readShaderFile(geometryShader);
-
-		glShaderSource(m_geometryShaderId, 1, &fs, NULL);
-
-		glCompileShader(m_geometryShaderId);
-		printShaderInfoLog(m_geometryShaderId);
-
-		glAttachShader(m_programId, m_geometryShaderId);
-		printProgramInfoLog(m_programId);
-	}
-
-	bool ShaderInterface::setShader(const char* vertexShader, const char* fragmentShader, const char* geometryShader) {
-		
-		m_programId = glCreateProgram();
-		//printf("shader : %s", vertexShader);
-		createVertexShader(vertexShader);
-		//printf("shader : %s", fragmentShader);
-		createFragmentShader(fragmentShader);
-		//printf("shader : %s", geometryShader);
-		createGeometryShader(geometryShader);
-
-		glLinkProgram(m_programId);
-		glUseProgram(m_programId);
-		return true;
-	}
-
-	bool ShaderInterface::removeShader() {
-		glDetachShader(m_programId, m_vertexShaderId);		// detach vertex shader
-		glDetachShader(m_programId, m_fragmentShaderId);	// detach fragment shader
-
-		glDeleteShader(m_vertexShaderId);
-		glDeleteShader(m_fragmentShaderId);
-		glUseProgram(0);
-		return true;
-	}
-
-	bool ShaderInterface::printShaderInfoLog(GLuint obj) {
-		int infologLength = 0;
-		int charsWritten = 0;
-		char *infoLog;
-		
-		glGetShaderiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
-
-		if (infologLength > 0)
-		{
-			infoLog = (char *)malloc(infologLength);
-			glGetShaderInfoLog(obj, infologLength, &charsWritten, infoLog);
-			printf("Shader info: %s\n", infoLog);
-			free(infoLog);	
-		}
-		// If success the infoLogLength is 1 which means empty.. no error
-		return (infologLength > 1);
-	}
-
-	bool ShaderInterface::printProgramInfoLog(GLuint obj) {
-		int infologLength = 0;
-		int charsWritten = 0;
-		char *infoLog;
-
-		glGetProgramiv(obj, GL_INFO_LOG_LENGTH, &infologLength);
-
-		if (infologLength > 0)
-		{
-			infoLog = (char *)malloc(infologLength);
-			glGetProgramInfoLog(obj, infologLength, &charsWritten, infoLog);
-			printf("program info: %s\n", infoLog);
-			free(infoLog);
-		}
-		// If success the infoLogLength is 1 which means empty.. no error
-		return (infologLength > 1);
-	}
-
-	void ShaderInterface::switchToShader(const char* vertexShader, const char* fragmentShader) {
-		removeShader();
-
-		setShader(vertexShader, fragmentShader);
+	void ShaderInterface::addShader(int id, const char* vert, const char* frag, const char* geom)
+	{
+		Shader* shader = new Shader(vert, frag, geom);
+		m_shaders.insert(std::pair<int, Shader*>(id, shader));
 	}
 	//////////////////////////////////////////////////////////////////////////
 	// Camera Projection
