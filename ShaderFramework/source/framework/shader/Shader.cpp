@@ -23,6 +23,30 @@ void Shader::useProgram()
 	glUseProgram(m_programId);
 }
 
+void Shader::setMat4(const char * attr, glm::mat4 matrix)
+{
+	GLuint loc = glGetUniformLocation(m_programId, attr);
+	glUniformMatrix4fv(loc, 1, GL_FALSE, glm::value_ptr(matrix));
+}
+
+void Shader::setVec3(const char * attr, glm::vec3 vector3)
+{
+	GLuint loc = glGetUniformLocation(m_programId, attr);
+	glUniform3fv(loc, 1, glm::value_ptr(vector3));
+}
+
+void Shader::setFloat(const char * attr, glm::float32 val)
+{
+	GLuint loc = glGetUniformLocation(m_programId, attr);
+	glUniform1f(loc, val);
+}
+
+void Shader::setInt(const char * attr, glm::int32 val)
+{
+	GLuint loc = glGetUniformLocation(m_programId, attr);
+	glUniform1i(loc, val);
+}
+
 Shader::~Shader()
 {
 	glDetachShader(m_programId, m_vertId);		// detach vertex shader

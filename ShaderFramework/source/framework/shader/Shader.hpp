@@ -3,6 +3,8 @@
 
 #include "GLEW/glew.h"
 #include "GL/glut.h"
+#include "glm\glm.hpp"
+#include "glm\gtc\type_ptr.hpp"
 
 class Shader {
 
@@ -30,6 +32,11 @@ public:
 	GLuint getProgramId() { return m_programId; }
 
 	void useProgram();
+
+	void setMat4(const char* attr, glm::mat4 matrix);
+	void setVec3(const char* attr, glm::vec3 vector3);
+	void setFloat(const char* attr, glm::float32 val);
+	void setInt(const char* attr, glm::int32 val);
 private:
 	/*!
 	\brief This function reads the shader file and returns char buffer.

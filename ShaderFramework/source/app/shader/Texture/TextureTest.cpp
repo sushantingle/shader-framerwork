@@ -96,10 +96,6 @@ void TextureTest::render() {
 
 	glMatrixMode(GL_MODELVIEW);
 	glLoadIdentity();
-	
-	gluLookAt(m_cameraPosition.x, 1.0f, m_cameraPosition.z,
-		m_cameraPosition.x + m_cameraRotation.x, 1.0f, m_cameraPosition.z + m_cameraRotation.z,
-		0.0f, 1.0f, 0.0f);
 
 	glm::mat4 view;
 	glm::vec3 target = glm::vec3(m_cameraPosition.x + m_cameraRotation.x, m_cameraPosition.y + m_cameraRotation.y, m_cameraPosition.z + m_cameraRotation.z);

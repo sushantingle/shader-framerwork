@@ -61,6 +61,12 @@
     <Filter Include="Resource Files\texture">
       <UniqueIdentifier>{ae6bfdda-2e52-4cc8-82bc-c20606f55fa7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\shader\Light">
+      <UniqueIdentifier>{61d07101-d7a0-44d0-876e-0f74158c4488}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shader\light">
+      <UniqueIdentifier>{9c2210fa-c030-4ed6-b5d0-77623b6be9f2}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
@@ -89,6 +95,9 @@
     </ClCompile>
     <ClCompile Include="..\source\framework\shader\Shader.cpp">
       <Filter>Source Files\Framework\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\Light\LightTest.cpp">
+      <Filter>Source Files\App\shader\Light</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -143,6 +152,9 @@
     <ClInclude Include="..\source\framework\shader\Shader.hpp">
       <Filter>Source Files\Framework\shader</Filter>
     </ClInclude>
+    <ClInclude Include="..\source\app\shader\Light\LightTest.hpp">
+      <Filter>Source Files\App\shader\Light</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="..\source\app\resource\shader\toon.frag">
@@ -196,6 +208,12 @@
     </None>
     <None Include="..\source\app\resource\shader\texture\texturetest.vert">
       <Filter>Resource Files\shader\texture</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\light\lightest.frag">
+      <Filter>Resource Files\shader\light</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\light\lightest.vert">
+      <Filter>Resource Files\shader\light</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
