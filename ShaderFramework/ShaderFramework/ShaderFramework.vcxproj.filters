@@ -99,6 +99,9 @@
     <ClCompile Include="..\source\app\shader\Light\LightTest.cpp">
       <Filter>Source Files\App\shader\Light</Filter>
     </ClCompile>
+    <ClCompile Include="..\source\app\shader\Light\LightMapTest.cpp">
+      <Filter>Source Files\App\shader\Texture</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\external\GL\freeglut.h">
@@ -154,6 +157,9 @@
     </ClInclude>
     <ClInclude Include="..\source\app\shader\Light\LightTest.hpp">
       <Filter>Source Files\App\shader\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\app\shader\Light\LightMapTest.hpp">
+      <Filter>Source Files\App\shader\Texture</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -213,6 +219,12 @@
       <Filter>Resource Files\shader\light</Filter>
     </None>
     <None Include="..\source\app\resource\shader\light\lightest.vert">
+      <Filter>Resource Files\shader\light</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\light\lightmaptest.frag">
+      <Filter>Resource Files\shader\light</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\light\lightmaptest.vert">
       <Filter>Resource Files\shader\light</Filter>
     </None>
   </ItemGroup>

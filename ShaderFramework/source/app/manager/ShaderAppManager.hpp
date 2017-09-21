@@ -94,6 +94,7 @@ private:
 			SHADER_GEOMTRY_BASIC, //!< This defines basic geometry shader
 			SHADER_TEXTURE_TEST,
 			SHADER_LIGHT_TEST,
+			SHADER_LIGHTMAP_TEST,
 			SHADER_COUNT,		//!< This defines number shaders app has.
 		};
 
