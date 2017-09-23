@@ -5,6 +5,8 @@
 #include "../app/shader/Texture/TextureTest.hpp"
 #include "../app/shader/Light/LightTest.hpp"
 #include "../app/shader/Light/LightMapTest.hpp"
+#include "../app/shader/Light/LightCasterTest.hpp"
+#include "../app/shader/Model/ModelTest.hpp"
 #include <assert.h>
 
 ShaderAppManager::ShaderAppManager() {
@@ -24,7 +26,7 @@ void ShaderAppManager::init(int _width, int _height) {
 	// call shader base init
 	m_windowWidth = _width;
 	m_windowHeight = _height;
-	m_shaderType = ShaderType::SHADER_LIGHTMAP_TEST;
+	m_shaderType = ShaderType::SHADER_CASTER_TEST;
 	createShader(m_shaderType);
 }
 
@@ -71,6 +73,12 @@ void ShaderAppManager::createObjectOfShaderType(ShaderType _shaderType) {
 		break;
 	case ShaderType::SHADER_LIGHTMAP_TEST:
 		m_shaderBase = new LightMapTest();
+		break;
+	case ShaderType::SHADER_CASTER_TEST:
+		m_shaderBase = new LightCasterTest();
+		break;
+	case ShaderType::SHADER_MODEL_TEST:
+		m_shaderBase = new ModelTest();
 		break;
 	}
 }

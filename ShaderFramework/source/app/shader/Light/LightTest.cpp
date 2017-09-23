@@ -124,23 +124,4 @@ void LightTest::render()
 
 	glBindVertexArray(cubeVAO);
 	glDrawArrays(GL_TRIANGLES, 0, 36);
-
-	// render lamp
-/*	m_shaders[1]->useProgram();
-
-	viewLoc = glGetUniformLocation(m_shaders[1]->getProgramId(), "view");
-	glUniformMatrix4fv(viewLoc, 1, GL_FALSE, glm::value_ptr(view));
-	model = glm::mat4();
-	model = glm::translate(model, glm::vec3(1.0f, 0.0f, -8.0f));
-	model = glm::rotate(glm::radians(30.0f), glm::vec3(0.5f, 0.1f, 0.5f));
-	modelLoc = glGetUniformLocation(m_shaders[1]->getProgramId(), "model");
-	glUniformMatrix4fv(modelLoc, 1, GL_FALSE, glm::value_ptr(model));
-
-	projectionLoc = glGetUniformLocation(m_shaders[1]->getProgramId(), "projection");
-	glUniformMatrix4fv(projectionLoc, 1, GL_FALSE, glm::value_ptr(projection));
-
-	glBindTexture(GL_TEXTURE0, 0);
-
-	glBindVertexArray(lightVao);
-	glDrawArrays(GL_TRIANGLES, 0, 36);*/
 }

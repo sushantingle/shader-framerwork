@@ -67,6 +67,15 @@
     <Filter Include="Resource Files\shader\light">
       <UniqueIdentifier>{9c2210fa-c030-4ed6-b5d0-77623b6be9f2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Framework\mesh">
+      <UniqueIdentifier>{5cd9d35c-ad86-487a-93d7-08f982a6eab9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\App\shader\Model">
+      <UniqueIdentifier>{390ce207-75fa-4b78-b52b-481a1538f5de}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shader\model">
+      <UniqueIdentifier>{a45023ca-bca1-46f2-a085-f4e26cc6dad3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
@@ -100,7 +109,19 @@
       <Filter>Source Files\App\shader\Light</Filter>
     </ClCompile>
     <ClCompile Include="..\source\app\shader\Light\LightMapTest.cpp">
-      <Filter>Source Files\App\shader\Texture</Filter>
+      <Filter>Source Files\App\shader\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\Light\LightCasterTest.cpp">
+      <Filter>Source Files\App\shader\Light</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\framework\mesh\Mesh.cpp">
+      <Filter>Source Files\Framework\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\framework\mesh\Model.cpp">
+      <Filter>Source Files\Framework\mesh</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\Model\ModelTest.cpp">
+      <Filter>Source Files\App\shader\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -159,7 +180,19 @@
       <Filter>Source Files\App\shader\Light</Filter>
     </ClInclude>
     <ClInclude Include="..\source\app\shader\Light\LightMapTest.hpp">
-      <Filter>Source Files\App\shader\Texture</Filter>
+      <Filter>Source Files\App\shader\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\app\shader\Light\LightCasterTest.hpp">
+      <Filter>Source Files\App\shader\Light</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\framework\mesh\Mesh.hpp">
+      <Filter>Source Files\Framework\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\framework\mesh\Model.hpp">
+      <Filter>Source Files\Framework\mesh</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\app\shader\Model\ModelTest.hpp">
+      <Filter>Source Files\App\shader\Model</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -226,6 +259,18 @@
     </None>
     <None Include="..\source\app\resource\shader\light\lightmaptest.vert">
       <Filter>Resource Files\shader\light</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\light\lightcastertest.vert">
+      <Filter>Resource Files\shader\light</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\light\lightcastertest.frag">
+      <Filter>Resource Files\shader\light</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\model\modeltest.vert">
+      <Filter>Resource Files\shader\model</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\model\modeltest.frag">
+      <Filter>Resource Files\shader\model</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

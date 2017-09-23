@@ -42,7 +42,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <LinkIncremental>true</LinkIncremental>
-    <LibraryPath>../lib/glut;../lib/glew/Win32;$(LibraryPath)</LibraryPath>
+    <LibraryPath>../lib/glut;../lib/glew/Win32;../lib/assimp;$(LibraryPath)</LibraryPath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <LinkIncremental>false</LinkIncremental>
@@ -59,7 +59,7 @@
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>glew32.lib;freeglut.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>glew32.lib;freeglut.lib;assimp.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -82,12 +82,16 @@
   <ItemGroup>
     <ClCompile Include="..\source\app\manager\ShaderAppManager.cpp" />
     <ClCompile Include="..\source\app\shader\GeometryShader.cpp" />
+    <ClCompile Include="..\source\app\shader\Light\LightCasterTest.cpp" />
     <ClCompile Include="..\source\app\shader\Light\LightMapTest.cpp" />
     <ClCompile Include="..\source\app\shader\Light\LightTest.cpp" />
+    <ClCompile Include="..\source\app\shader\Model\ModelTest.cpp" />
     <ClCompile Include="..\source\app\shader\ShaderDefault.cpp" />
     <ClCompile Include="..\source\app\shader\ShaderDiffuse.cpp" />
     <ClCompile Include="..\source\app\shader\Texture\TextureTest.cpp" />
     <ClCompile Include="..\source\external\stbi\stb_image.cpp" />
+    <ClCompile Include="..\source\framework\mesh\Mesh.cpp" />
+    <ClCompile Include="..\source\framework\mesh\Model.cpp" />
     <ClCompile Include="..\source\framework\shader\Shader.cpp" />
     <ClCompile Include="..\source\framework\shader\ShaderInterface.cpp" />
     <ClCompile Include="..\source\MainApp.cpp" />
@@ -95,8 +99,10 @@
   <ItemGroup>
     <ClInclude Include="..\source\app\manager\ShaderAppManager.hpp" />
     <ClInclude Include="..\source\app\shader\GeometryShader.hpp" />
+    <ClInclude Include="..\source\app\shader\Light\LightCasterTest.hpp" />
     <ClInclude Include="..\source\app\shader\Light\LightMapTest.hpp" />
     <ClInclude Include="..\source\app\shader\Light\LightTest.hpp" />
+    <ClInclude Include="..\source\app\shader\Model\ModelTest.hpp" />
     <ClInclude Include="..\source\app\shader\ShaderDefault.hpp" />
     <ClInclude Include="..\source\app\shader\ShaderDiffuse.hpp" />
     <ClInclude Include="..\source\app\shader\Texture\TextureTest.hpp" />
@@ -110,6 +116,8 @@
     <ClInclude Include="..\source\external\GL\glut.h" />
     <ClInclude Include="..\source\external\stbi\stb_image.h" />
     <ClInclude Include="..\source\framework\datatype\fsVector.hpp" />
+    <ClInclude Include="..\source\framework\mesh\Mesh.hpp" />
+    <ClInclude Include="..\source\framework\mesh\Model.hpp" />
     <ClInclude Include="..\source\framework\shader\Shader.hpp" />
     <ClInclude Include="..\source\framework\shader\ShaderInterface.hpp" />
   </ItemGroup>
@@ -127,10 +135,14 @@
     <None Include="..\source\app\resource\shader\geometry_shader\basic.frag" />
     <None Include="..\source\app\resource\shader\geometry_shader\basic.geom" />
     <None Include="..\source\app\resource\shader\geometry_shader\basic.vert" />
+    <None Include="..\source\app\resource\shader\light\lightcastertest.frag" />
+    <None Include="..\source\app\resource\shader\light\lightcastertest.vert" />
     <None Include="..\source\app\resource\shader\light\lightest.frag" />
     <None Include="..\source\app\resource\shader\light\lightest.vert" />
     <None Include="..\source\app\resource\shader\light\lightmaptest.frag" />
     <None Include="..\source\app\resource\shader\light\lightmaptest.vert" />
+    <None Include="..\source\app\resource\shader\model\modeltest.frag" />
+    <None Include="..\source\app\resource\shader\model\modeltest.vert" />
     <None Include="..\source\app\resource\shader\texture\texturetest.frag" />
     <None Include="..\source\app\resource\shader\texture\texturetest.vert" />
     <None Include="..\source\app\resource\shader\toon.frag" />
