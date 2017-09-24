@@ -97,6 +97,7 @@ private:
 			SHADER_LIGHTMAP_TEST,
 			SHADER_CASTER_TEST,
 			SHADER_MODEL_TEST,
+			SHADER_FRAMEBUFFER_TEST,
 			SHADER_COUNT,		//!< This defines number shaders app has.
 		};
 

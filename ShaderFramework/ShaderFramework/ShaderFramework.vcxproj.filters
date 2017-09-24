@@ -76,6 +76,12 @@
     <Filter Include="Resource Files\shader\model">
       <UniqueIdentifier>{a45023ca-bca1-46f2-a085-f4e26cc6dad3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\App\shader\Buffer">
+      <UniqueIdentifier>{d9545594-826c-4a4d-97c1-828616496b05}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\shader\buffer">
+      <UniqueIdentifier>{e2f94e06-1ab2-4244-a69c-95135bee005f}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\source\MainApp.cpp">
@@ -122,6 +128,9 @@
     </ClCompile>
     <ClCompile Include="..\source\app\shader\Model\ModelTest.cpp">
       <Filter>Source Files\App\shader\Model</Filter>
+    </ClCompile>
+    <ClCompile Include="..\source\app\shader\Buffer\FramebufferTest.cpp">
+      <Filter>Source Files\App\shader\Buffer</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -193,6 +202,9 @@
     </ClInclude>
     <ClInclude Include="..\source\app\shader\Model\ModelTest.hpp">
       <Filter>Source Files\App\shader\Model</Filter>
+    </ClInclude>
+    <ClInclude Include="..\source\app\shader\Buffer\FramebufferTest.hpp">
+      <Filter>Source Files\App\shader\Buffer</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -271,6 +283,12 @@
     </None>
     <None Include="..\source\app\resource\shader\model\modeltest.frag">
       <Filter>Resource Files\shader\model</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\buffer\framebuffertest.frag">
+      <Filter>Resource Files\shader\buffer</Filter>
+    </None>
+    <None Include="..\source\app\resource\shader\buffer\framebuffertest.vert">
+      <Filter>Resource Files\shader\buffer</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>

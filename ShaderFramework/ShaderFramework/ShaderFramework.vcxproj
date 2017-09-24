@@ -81,6 +81,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="..\source\app\manager\ShaderAppManager.cpp" />
+    <ClCompile Include="..\source\app\shader\Buffer\FramebufferTest.cpp" />
     <ClCompile Include="..\source\app\shader\GeometryShader.cpp" />
     <ClCompile Include="..\source\app\shader\Light\LightCasterTest.cpp" />
     <ClCompile Include="..\source\app\shader\Light\LightMapTest.cpp" />
@@ -98,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\source\app\manager\ShaderAppManager.hpp" />
+    <ClInclude Include="..\source\app\shader\Buffer\FramebufferTest.hpp" />
     <ClInclude Include="..\source\app\shader\GeometryShader.hpp" />
     <ClInclude Include="..\source\app\shader\Light\LightCasterTest.hpp" />
     <ClInclude Include="..\source\app\shader\Light\LightMapTest.hpp" />
@@ -122,6 +124,8 @@
     <ClInclude Include="..\source\framework\shader\ShaderInterface.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\source\app\resource\shader\buffer\framebuffertest.frag" />
+    <None Include="..\source\app\resource\shader\buffer\framebuffertest.vert" />
     <None Include="..\source\app\resource\shader\diffuse\diffuse.frag" />
     <None Include="..\source\app\resource\shader\diffuse\diffuse.vert" />
     <None Include="..\source\app\resource\shader\diffuse\diffuseperpixel.frag" />
