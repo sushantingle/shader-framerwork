@@ -61,7 +61,7 @@ const char* Shader::readShaderFile(const char* fileName) {
 
 	int strLength = strlen(SHADER_ABSOLUTE_PATH) + strlen(fileName);
 	char* filePath = (char*)malloc(strLength + 1);
-	std::sprintf(filePath, "%s%s", SHADER_ABSOLUTE_PATH, fileName);
+	std::snprintf(filePath, strLength + 1,  "%s%s", SHADER_ABSOLUTE_PATH, fileName);
 	filePath[strLength] = '\0';
 	FILE* fp = fopen(filePath, "r");
 	char* buf;

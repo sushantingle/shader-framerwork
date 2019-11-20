@@ -11,12 +11,17 @@
 #include <assert.h>
 
 ShaderAppManager::ShaderAppManager() {
-	
+	createShaderLibrary();
 }
 
 ShaderAppManager::~ShaderAppManager() {
-	if (m_shaderBase)
-		delete m_shaderBase;
+	for (auto it = m_shaderLibrary.begin(); it != m_shaderLibrary.end(); it++) {
+        if (it->second != nullptr) {
+            delete it->second;
+            it->second = nullptr;
+        }
+	}
+	m_shaderLibrary.clear();
 }
 
 //////////////////////////////////////////////////////////////////////////
@@ -27,7 +32,7 @@ void ShaderAppManager::init(int _width, int _height) {
 	// call shader base init
 	m_windowWidth = _width;
 	m_windowHeight = _height;
-	m_shaderType = ShaderType::SHADER_FRAMEBUFFER_TEST;
+	m_shaderType = ShaderType::SHADER_DEFAULT;
 	createShader(m_shaderType);
 }
 
@@ -48,49 +53,27 @@ void ShaderAppManager::update() {
 //////////////////////////////////////////////////////////////////////////
 
 void ShaderAppManager::createShader(ShaderType _shaderType) {
-	createObjectOfShaderType(_shaderType);						// create shader object
+    assert(m_shaderLibrary.count(_shaderType) > 0);
+    m_shaderBase = m_shaderLibrary[_shaderType];
 	assert(m_shaderBase);
-	
 	m_shaderBase->baseInit(m_windowWidth, m_windowHeight);		// initialize shader base class with window width and height
 }
 
-void ShaderAppManager::createObjectOfShaderType(ShaderType _shaderType) {
-	switch (_shaderType) {
-	case ShaderType::SHADER_DEFAULT:
-		// Allocate shader object of type SHADER_DEFAULT
-		m_shaderBase = new ShaderDefault();
-		break;
-	case ShaderType::SHADER_DIFFUSE:
-		m_shaderBase = new ShaderDiffuse();
-		break;
-	case ShaderType::SHADER_GEOMTRY_BASIC:
-		m_shaderBase = new GeometryShader();
-		break;
-	case ShaderType::SHADER_TEXTURE_TEST:
-		m_shaderBase = new TextureTest();
-		break;
-	case ShaderType::SHADER_LIGHT_TEST:
-		m_shaderBase = new LightTest();
-		break;
-	case ShaderType::SHADER_LIGHTMAP_TEST:
-		m_shaderBase = new LightMapTest();
-		break;
-	case ShaderType::SHADER_CASTER_TEST:
-		m_shaderBase = new LightCasterTest();
-		break;
-	case ShaderType::SHADER_MODEL_TEST:
-		m_shaderBase = new ModelTest();
-		break;
-	case ShaderType::SHADER_FRAMEBUFFER_TEST:
-		m_shaderBase = new FramebufferTest();
-		break;
-	}
+void ShaderAppManager::createShaderLibrary()
+{
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_DEFAULT, new ShaderDefault()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_DIFFUSE, new ShaderDiffuse()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_GEOMTRY_BASIC, new GeometryShader()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_TEXTURE_TEST, new TextureTest()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_LIGHT_TEST, new LightTest()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_LIGHTMAP_TEST, new LightMapTest()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_CASTER_TEST, new LightCasterTest()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_MODEL_TEST, new ModelTest()));
+	m_shaderLibrary.insert(std::pair<ShaderType, sf::ShaderInterface*>(ShaderType::SHADER_FRAMEBUFFER_TEST, new FramebufferTest()));
 }
 
 void ShaderAppManager::deleteShader() {
 	m_shaderBase->baseUninit();									// Uninit base shader.
-	
-	delete m_shaderBase;										// deletes shader base object
 }
 
 void ShaderAppManager::activateNextShader(bool _next) {

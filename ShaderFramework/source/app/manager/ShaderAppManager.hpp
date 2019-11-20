@@ -105,13 +105,13 @@ private:
 			\brief implemented + operator to do addition operation on enum.
 			\param _a is like this pointer of enum
 		*/
-		friend ShaderType& operator+(ShaderType _a, int value);
+		friend ShaderType operator+(ShaderType _a, int value);
 
 		/*!
 			\brief implemented - operator to do substraction operation on enum
 			\param _a is like this pointer of enum
 		*/
-		friend ShaderType& operator-(ShaderType _a, int value);
+		friend ShaderType operator-(ShaderType _a, int value);
 
 
 	// Member Function
@@ -127,10 +127,9 @@ private:
 	void deleteShader();
 
 	/*! 
-		\brief Allocates shader interface object of shader type.
-		\param _shaderType is shader type.
+		\brief Allocates shader interface object for all shader types.
 	*/
-	void createObjectOfShaderType(ShaderType _shaderType);
+	void createShaderLibrary();
 
 	/*! 
 		\brief this function invokes in mouse button up callback. 
@@ -154,17 +153,17 @@ private:
 	int					 m_windowWidth; //! \var This denotes window width
 	int					 m_windowHeight;//! \var This denotes window height
 
-
+	std::map < ShaderType, sf::ShaderInterface*> m_shaderLibrary;
 };
 
-inline ShaderAppManager::ShaderType& operator+ (ShaderAppManager::ShaderType _shaderType, int value)
+inline ShaderAppManager::ShaderType operator+ (ShaderAppManager::ShaderType _shaderType, int value)
 {
 	const int i = static_cast<int> (_shaderType) + value;
 	_shaderType = static_cast<ShaderAppManager::ShaderType> ((i) % static_cast<int> (ShaderAppManager::ShaderType::SHADER_COUNT));
 	return _shaderType;
 }
 
-inline ShaderAppManager::ShaderType& operator- (ShaderAppManager::ShaderType _shaderType, int value)
+inline ShaderAppManager::ShaderType operator- (ShaderAppManager::ShaderType _shaderType, int value)
 {
 	const int i = static_cast<int> (_shaderType) - value;
 	_shaderType = static_cast<ShaderAppManager::ShaderType> ((i) % static_cast<int> (ShaderAppManager::ShaderType::SHADER_COUNT));

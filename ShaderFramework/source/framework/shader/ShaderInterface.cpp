@@ -144,7 +144,7 @@ namespace sf {
 
 		glScalef(1, -1, 1);
 
-		glTranslatef(0, -m_windowHeight, 0);
+		glTranslatef(0, -static_cast<float>(m_windowHeight), 0);
 
 		glMatrixMode(GL_MODELVIEW);
 	}
@@ -200,7 +200,7 @@ namespace sf {
 				m_xOrigin = -1;
 			}
 			else  {// state = GLUT_DOWN
-				m_xOrigin = x;
+				m_xOrigin = static_cast<float>(x);
 			}
 		}
 	}

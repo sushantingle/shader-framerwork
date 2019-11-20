@@ -1,2 +1,7 @@
 ShaderFramework/.vs/
 ShaderFramework/ShaderFramework/Debug/
+ShaderFramework/ShaderFramework/Release/
+ShaderFramework/Release/
+*.VC.VC.opendb
+*.VC.db
+*.sln.DotSettings.user

@@ -12,11 +12,15 @@ private:
 	void update() override;
 	void render() override;
 
-	unsigned int VBO, cubeVAO;
-	GLuint textures[2];
-	float m_rotationAngle;
+	unsigned int    VBO, cubeVAO;
+	GLuint          textures[2];
+	float           m_rotationAngle;
 
-	unsigned int FBO, FBOTexture,RBO, quadVBO, quadVAO;
+    unsigned int    FBO;
+    unsigned int    FBOTexture;
+    unsigned int    RBO;
+    unsigned int    quadVBO;
+    unsigned int    quadVAO;
 
 public:
 	FramebufferTest() {	}

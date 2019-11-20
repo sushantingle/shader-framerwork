@@ -1,11 +1,11 @@
 #include "app/manager/ShaderAppManager.hpp"
-
+#include <memory>
 // Window Parameters
 int width = 800;
 int height = 600;
 
 // Shader App Manager
-ShaderAppManager* m_appManager;
+std::unique_ptr<ShaderAppManager> m_appManager;
 
 /************************************************************************/
 /* 
@@ -64,7 +64,7 @@ int main(int argc, char** argv) {
 	glutCreateWindow("Shader Framework"); // set window title
 
 	// Initialize App Manager
-	m_appManager = new ShaderAppManager();
+	m_appManager = std::make_unique<ShaderAppManager>();
 	m_appManager->init(width, height);
 
 	// register window resize function
