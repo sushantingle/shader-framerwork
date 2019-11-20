@@ -1,0 +1,53 @@
+# Title
+
+ShaderFramework
+
+## Installation
+
+Fork the repository and build it using VS2015.
+
+## Usage
+
+This framework can be used to implement and test shaders. You can easily add class and shader files in project and check. Currently it supports Vertex, Geometry and Pixel shaders.
+To switch between shaders, use 'E' and 'D' keyboard keys.
+
+## Design
+Design approach used here is bit different. I tried to create design pattern using inheritance where base class can have common implementation and derived functions will be called from same.
+
+```bash
+e.g. base->BaseInit() ==> 
+                        BaseInit() 
+                        { 
+                            //default implementation
+                            DerivedInit();
+                        }
+```
+
+## Shader Class Structure
+```bash
+class ShaderDefault : public sf::ShaderInterface {
+private :
+	void init() override;
+	void uninit() override;
+	
+	void update() override; 
+	void render() override;
+	
+	void renderSnowMan();
+
+
+public:
+	ShaderDefault() {}
+	~ShaderDefault() {}
+};
+```
+
+In init, you can add shader files.
+```bash
+addShader(0, "toon.vert", "toon.frag", "");
+```
+
+## 
+
+![Alt text](./ShaderFramework/ReadMe/Screenshot_1.PNG?raw=true "")
+
